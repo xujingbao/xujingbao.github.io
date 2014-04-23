@@ -1,15 +1,12 @@
-
- <!DOCTYPE HTML>
-<html >
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   
-    <title>zsh配置默认的编辑器 | Evan&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Evan Xu">
-    
-    <meta name="description" content="1.打开zshrc
+  <title>zsh配置默认的编辑器 | Evan&#39;s Blog</title>
+  <meta name="author" content="Evan Xu">
+  
+  <meta name="description" content="1.打开zshrc
 1
 vi ~/.zshrc
 
@@ -19,84 +16,59 @@ vi ~/.zshrc
 2
 alias vi=&#39;vim&#39;  # 表示在命令行输入vi 。就打开vim
 alias subl = &#39;/Applications/Sublime\ ">
-    
-    
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="xujingbao" />
-    <meta name="twitter:title" content="zsh配置默认的编辑器 | Evan&#39;s Blog" />
-      
-    
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="zsh配置默认的编辑器"/>
+  <meta property="og:site_name" content="Evan&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Evan&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
 </head>
 
-  <body>
-    <header>
-      <div>
-		
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
-				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:www.xujingbao.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Evan&#39;s Blog</a></h1>
+  <h2><a href="/">Always believe that something wonderful is about to happen</a></h2>
 </div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-26T00:46:26.000Z"><a href="/2013/07/26/2013-07-26-zshe9858de7bdaee9bb98e8aea4e79a84e7bc96e8be91e599a8/">Jul 26 2013</a></time>
+      
+      
+  
+    <h1 class="title">zsh配置默认的编辑器</h1>
+  
 
     </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2013/07/26/2013-07-26-zshe9858de7bdaee9bb98e8aea4e79a84e7bc96e8be91e599a8/" title="zsh配置默认的编辑器" itemprop="url">zsh配置默认的编辑器</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2013-07-26T00:46:26.000Z" itemprop="datePublished">Jul 26 2013</time>
-    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-		</div>
-		
-		<p>1.打开zshrc</p>
+    <div class="entry">
+      
+        <p>1.打开zshrc</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>vi ~/<span class="preprocessor">.zshrc</span>
 </pre></td></tr></table></figure>
@@ -117,305 +89,198 @@ alias <span class="operator">-s</span> rb=subl         <span class="comment"># �
 alias <span class="operator">-s</span> txt=vi          <span class="comment"># 在命令行直接输入 ruby 文件，会在 vim 中打开</span>
 </pre></td></tr></table></figure>
 
+
+      
+    </div>
+    <footer>
+      
+        
   
-	</div>
-		<footer class="article-footer clearfix">
-
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/OS/">OS</a>
-</div>
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="http://www.xujingbao.com/2013/07/26/2013-07-26-zshe9858de7bdaee9bb98e8aea4e79a84e7bc96e8be91e599a8/" data-title="zsh配置默认的编辑器 | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  <div class="categories">
+    <a href="/categories/OS/">OS</a>
   </div>
 
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2013/07/30/2013-07-30-e88bb1e69687mace7b3bbe7bb9fe59ca8chromee4b8ade4bdbfe794a8e58db0e8b1a1e7ac94e8aeb0e4b98be589aae8a381e68f92e4bbb6/" title="英文Mac系统在Chrome中使用印象笔记之剪裁插件">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  英文Mac系统在Chrome中使用印象笔记之剪裁插件</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2013/06/16/2013-06-16-os-x-e698bee7a4bae99a90e8978fe69687e4bbb6/"  title="OS X 显示隐藏文件">
- <strong>NEXT:</strong><br/> 
- <span>OS X 显示隐藏文件
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
-  
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:www.xujingbao.com">
+  </form>
+</div>
 
   
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
-		
-			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
-		
-			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
-		
-			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
-		
-			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
-		
-			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
-		
-			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
-		
-			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
-		
-			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
-		
-			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
-		
-			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
-		
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
-		
-			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
-		
-			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
-		
-		</ul>
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/categories/Mac/Github/">Github</a><small>1</small></li>
+  
+    <li><a href="/categories/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/OS/">OS</a><small>15</small></li>
+  
+    <li><a href="/categories/Other/">Other</a><small>2</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Ruby/">Ruby</a><small>2</small></li>
+  
+    <li><a href="/categories/Web tech/">Web tech</a><small>4</small></li>
+  
+    <li><a href="/categories/osx/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/categories/c/">c</a><small>1</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/osx/">osx</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/">pthread</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/timeout/">timeout</a><small>1</small></li>
+  
+    <li><a href="/categories/osx/brew/zsh/">zsh</a><small>1</small></li>
+  
+  </ul>
 </div>
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
-		
-			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
-		
-			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
-		
-			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
-		
-			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
-		
-			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
-		
-			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
-		
-			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
-		
-			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
-		
-			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ARC/">ARC</a><small>1</small></li>
+  
+    <li><a href="/tags/Alfred/">Alfred</a><small>1</small></li>
+  
+    <li><a href="/tags/Amazon/">Amazon</a><small>1</small></li>
+  
+    <li><a href="/tags/Apache/">Apache</a><small>1</small></li>
+  
+    <li><a href="/tags/App Store/">App Store</a><small>1</small></li>
+  
+    <li><a href="/tags/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/tags/IP/">IP</a><small>1</small></li>
+  
+    <li><a href="/tags/MRC/">MRC</a><small>1</small></li>
+  
+    <li><a href="/tags/MacOS/">MacOS</a><small>1</small></li>
+  
+    <li><a href="/tags/NodeJs/">NodeJs</a><small>1</small></li>
+  
+    <li><a href="/tags/OS/">OS</a><small>2</small></li>
+  
+    <li><a href="/tags/QRals/">QRals</a><small>1</small></li>
+  
+    <li><a href="/tags/Ruby/">Ruby</a><small>1</small></li>
+  
+    <li><a href="/tags/SSD/">SSD</a><small>1</small></li>
+  
+    <li><a href="/tags/UIBarButtonItem/">UIBarButtonItem</a><small>1</small></li>
+  
+    <li><a href="/tags/UIButton/">UIButton</a><small>1</small></li>
+  
+    <li><a href="/tags/UITableViewCell/">UITableViewCell</a><small>1</small></li>
+  
+    <li><a href="/tags/UIWebView/">UIWebView</a><small>1</small></li>
+  
+    <li><a href="/tags/Uncrustify/">Uncrustify</a><small>1</small></li>
+  
+    <li><a href="/tags/Unix/">Unix</a><small>1</small></li>
+  
+    <li><a href="/tags/Web tech/">Web tech</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/Xcode/">Xcode</a><small>1</small></li>
+  
+    <li><a href="/tags/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/tags/htaccess/">htaccess</a><small>1</small></li>
+  
+    <li><a href="/tags/iOS/">iOS</a><small>1</small></li>
+  
+    <li><a href="/tags/iptables/">iptables</a><small>1</small></li>
+  
+    <li><a href="/tags/macports/">macports</a><small>1</small></li>
+  
+    <li><a href="/tags/openssl/">openssl</a><small>1</small></li>
+  
+    <li><a href="/tags/plist/">plist</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/workflow/">workflow</a><small>1</small></li>
+  
+    <li><a href="/tags/价值观/">价值观</a><small>1</small></li>
+  
+    <li><a href="/tags/内存管理/">内存管理</a><small>1</small></li>
+  
+    <li><a href="/tags/固态硬盘/">固态硬盘</a><small>1</small></li>
+  
+    <li><a href="/tags/新浪微博SDK/">新浪微博SDK</a><small>1</small></li>
+  
+  </ul>
 </div>
 
 </aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Evan Xu
+  
 </div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Evan. <br/>
-			his is my blog,believe it or not</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
-		
-		
-	</div>
-		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
-		
-		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
-
-
-
-
-
-
-  </body>
+</body>
 </html>

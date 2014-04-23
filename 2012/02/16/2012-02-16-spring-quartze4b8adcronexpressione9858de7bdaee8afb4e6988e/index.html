@@ -1,93 +1,65 @@
-
- <!DOCTYPE HTML>
-<html >
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   
-    <title>Spring--quartz中cronExpression配置说明 | Evan&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Evan Xu">
-    
-    <meta name="description" content="字段 允许值 允许的特殊字符秒 0-59 , -  /分 0-59 , -  /小时 0-23 , -  /日期 1-31 , -  ? / L W C月份 1-12 或者 JAN-DEC , -  /星期 1-7 或者 SUN-SAT , -  ? / L C #年（可选） 留空, 1970-20">
-    
-    
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="xujingbao" />
-    <meta name="twitter:title" content="Spring--quartz中cronExpression配置说明 | Evan&#39;s Blog" />
-      
-    
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <title>Spring--quartz中cronExpression配置说明 | Evan&#39;s Blog</title>
+  <meta name="author" content="Evan Xu">
+  
+  <meta name="description" content="字段 允许值 允许的特殊字符秒 0-59 , -  /分 0-59 , -  /小时 0-23 , -  /日期 1-31 , -  ? / L W C月份 1-12 或者 JAN-DEC , -  /星期 1-7 或者 SUN-SAT , -  ? / L C #年（可选） 留空, 1970-20">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Spring--quartz中cronExpression配置说明"/>
+  <meta property="og:site_name" content="Evan&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Evan&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
 </head>
 
-  <body>
-    <header>
-      <div>
-		
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
-				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:www.xujingbao.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Evan&#39;s Blog</a></h1>
+  <h2><a href="/">Always believe that something wonderful is about to happen</a></h2>
 </div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-02-16T07:50:48.000Z"><a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/">Feb 16 2012</a></time>
+      
+      
+  
+    <h1 class="title">Spring--quartz中cronExpression配置说明</h1>
+  
 
     </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/" title="Spring--quartz中cronExpression配置说明" itemprop="url">Spring--quartz中cronExpression配置说明</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2012-02-16T07:50:48.000Z" itemprop="datePublished">Feb 16 2012</time>
-    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-		</div>
-		
-		<p>字段 允许值 允许的特殊字符<br>秒 0-59 , - <em> /<br>分 0-59 , - </em> /<br>小时 0-23 , - <em> /<br>日期 1-31 , - </em> ? / L W C<br>月份 1-12 或者 JAN-DEC , - <em> /<br>星期 1-7 或者 SUN-SAT , - </em> ? / L C #<br>年（可选） 留空, 1970-2099 , - * /</p>
+    <div class="entry">
+      
+        <p>字段 允许值 允许的特殊字符<br>秒 0-59 , - <em> /<br>分 0-59 , - </em> /<br>小时 0-23 , - <em> /<br>日期 1-31 , - </em> ? / L W C<br>月份 1-12 或者 JAN-DEC , - <em> /<br>星期 1-7 或者 SUN-SAT , - </em> ? / L C #<br>年（可选） 留空, 1970-2099 , - * /</p>
 <p>The ‘<em>‘ character is used to specify all values. For example, “</em>“ in the minute field means “every minute”.<br>“<em>”字符被用来指定所有的值。如：”</em>“在分钟的字段域里表示“每分钟”。<br>The ‘?’ character is allowed for the day-of-month and day-of-week fields. It is used to specify ‘no specific value’. This is useful when you need to specify something in one of the two fileds, but not the other. See the examples below for clarification.<br>“?”字符只在日期域和星期域中使用。它被用来指定“非明确的值”。当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。看下面的例子你就会明白。<br>月份中的日期和星期中的日期这两个元素时互斥的一起应该通过设置一个问号(?)来表明不想设置那个字段</p>
 <p>The ‘-‘ character is used to specify ranges For example “10-12” in the hour field means “the hours 10, 11 and 12”.<br>“-”字符被用来指定一个范围。如：“10-12”在小时域意味着“10点、11点、12点”。</p>
 <p>The ‘,’ character is used to specify additional values. For example “MON,WED,FRI” in the day-of-week field means “the days Monday, Wednesday, and Friday”.<br>“,”字符被用来指定另外的值。如：“MON,WED,FRI”在星期域里表示”星期一、星期三、星期五”.</p>
@@ -99,310 +71,223 @@
 <p>The ‘C’ character is allowed for the day-of-month and day-of-week fields. This character is short-hand for “calendar”. This means values are calculated against the associated calendar, if any. If no calendar is associated, then it is equivalent to having an all-inclusive calendar. A value of “5C” in the day-of-month field means “the first day included by the calendar on or after the 5th”. A value of “1C” in the day-of-week field means “the first day included by the calendar on or after sunday”.<br>关于cronExpression的介绍:</p>
 <p>字段 允许值 允许的特殊字符<br>秒 0-59 , - <em> /<br>分 0-59 , - </em> /<br>小时 0-23 , - <em> /<br>日期 1-31 , - </em> ? / L W C<br>月份 1-12 或者 JAN-DEC , - <em> /<br>星期 1-7 或者 SUN-SAT , - </em> ? / L C #<br>年（可选） 留空, 1970-2099 , - <em> /<br>表达式意义<br>“0 0 12 </em> <em> ?” 每天中午12点触发<br>“0 15 10 ? </em> <em>“ 每天上午10:15触发<br>“0 15 10 </em> <em> ?” 每天上午10:15触发<br>“0 15 10 </em> <em> ? </em>“ 每天上午10:15触发<br>“0 15 10 <em> </em> ? 2005” 2005年的每天上午10:15触发<br>“0 <em> 14 </em> <em> ?” 在每天下午2点到下午2:59期间的每1分钟触发<br>“0 0/5 14 </em> <em> ?” 在每天下午2点到下午2:55期间的每5分钟触发<br>“0 0/5 14,18 </em> <em> ?” 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>“0 0-5 14 </em> <em> ?” 在每天下午2点到下午2:05期间的每1分钟触发<br>“0 10,44 14 ? 3 WED” 每年三月的星期三的下午2:10和2:44触发<br>“0 15 10 ? </em> MON-FRI” 周一至周五的上午10:15触发<br>“0 15 10 15 <em> ?” 每月15日上午10:15触发<br>“0 15 10 L </em> ?” 每月最后一日的上午10:15触发<br>“0 15 10 ? <em> 6L” 每月的最后一个星期五上午10:15触发<br>“0 15 10 ? </em> 6L 2002-2005” 2002年至2005年的每月的最后一个星期五上午10:15触发<br>“0 15 10 ? <em> 6#3” 每月的第三个星期五上午10:15触发<br>每天早上6点<br>0 6 </em> <em> </em><br>每两个小时<br>0 <em>/2 </em> <em> </em><br>晚上11点到早上8点之间每两个小时，早上八点<br>0 23-7/2，8 <em> </em> <em><br>每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>0 11 4 </em> 1-3<br>1月1日早上4点<br>0 4 1 1 *</p>
 <p>quartz的高级特性不仅如此<br>1 数据库存储<br>2 集群支持<br>3 数据库持久化任务，trigger<br>4 trigger 的停止，运行<br>5 任务的任意添加<br>6 比corntrigger 更详尽的任务安排<br>7 线程的内部数据交换</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
 
-  <div class="article-tags">
+      
+    </div>
+    <footer>
+      
+        
   
-  <span></span> <a href="/tags/spring/">spring</a>
+  <div class="categories">
+    <a href="/categories/Java/">Java</a>
   </div>
 
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
-</div>
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="http://www.xujingbao.com/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/" data-title="Spring--quartz中cronExpression配置说明 | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+        
+  
+  <div class="tags">
+    <a href="/tags/spring/">spring</a>
   </div>
 
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2012/07/02/2012-07-02-ssde79a84e58699e585a5e694bee5a4a7-write-amplification/" title="SSD的写入放大 - Write amplification">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  SSD的写入放大 - Write amplification</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2012/02/15/2012-02-15-e5bc95e8b5b7iphonee5ba94e794a8e8a2abapp-storee68b92e7bb9de79a84e58e9fe59ba0/"  title="引起Iphone应用被App Store拒绝的原因">
- <strong>NEXT:</strong><br/> 
- <span>引起Iphone应用被App Store拒绝的原因
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
-  
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
 
   
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
-		
-			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
-		
-			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
-		
-			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
-		
-			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
-		
-			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
-		
-			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
-		
-			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
-		
-			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
-		
-			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
-		
-			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
-		
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
-		
-			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
-		
-			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
-		
-			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
-		
-		</ul>
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://www.xujingbao.com/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:www.xujingbao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/categories/Mac/Github/">Github</a><small>1</small></li>
+  
+    <li><a href="/categories/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/OS/">OS</a><small>15</small></li>
+  
+    <li><a href="/categories/Other/">Other</a><small>2</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Ruby/">Ruby</a><small>2</small></li>
+  
+    <li><a href="/categories/Web tech/">Web tech</a><small>4</small></li>
+  
+    <li><a href="/categories/osx/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/categories/c/">c</a><small>1</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/osx/">osx</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/">pthread</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/timeout/">timeout</a><small>1</small></li>
+  
+    <li><a href="/categories/osx/brew/zsh/">zsh</a><small>1</small></li>
+  
+  </ul>
 </div>
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
-		
-			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
-		
-			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
-		
-			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
-		
-			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
-		
-			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
-		
-			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
-		
-			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
-		
-			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
-		
-			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
-		
-			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ARC/">ARC</a><small>1</small></li>
+  
+    <li><a href="/tags/Alfred/">Alfred</a><small>1</small></li>
+  
+    <li><a href="/tags/Amazon/">Amazon</a><small>1</small></li>
+  
+    <li><a href="/tags/Apache/">Apache</a><small>1</small></li>
+  
+    <li><a href="/tags/App Store/">App Store</a><small>1</small></li>
+  
+    <li><a href="/tags/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/tags/IP/">IP</a><small>1</small></li>
+  
+    <li><a href="/tags/MRC/">MRC</a><small>1</small></li>
+  
+    <li><a href="/tags/MacOS/">MacOS</a><small>1</small></li>
+  
+    <li><a href="/tags/NodeJs/">NodeJs</a><small>1</small></li>
+  
+    <li><a href="/tags/OS/">OS</a><small>2</small></li>
+  
+    <li><a href="/tags/QRals/">QRals</a><small>1</small></li>
+  
+    <li><a href="/tags/Ruby/">Ruby</a><small>1</small></li>
+  
+    <li><a href="/tags/SSD/">SSD</a><small>1</small></li>
+  
+    <li><a href="/tags/UIBarButtonItem/">UIBarButtonItem</a><small>1</small></li>
+  
+    <li><a href="/tags/UIButton/">UIButton</a><small>1</small></li>
+  
+    <li><a href="/tags/UITableViewCell/">UITableViewCell</a><small>1</small></li>
+  
+    <li><a href="/tags/UIWebView/">UIWebView</a><small>1</small></li>
+  
+    <li><a href="/tags/Uncrustify/">Uncrustify</a><small>1</small></li>
+  
+    <li><a href="/tags/Unix/">Unix</a><small>1</small></li>
+  
+    <li><a href="/tags/Web tech/">Web tech</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/Xcode/">Xcode</a><small>1</small></li>
+  
+    <li><a href="/tags/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/tags/htaccess/">htaccess</a><small>1</small></li>
+  
+    <li><a href="/tags/iOS/">iOS</a><small>1</small></li>
+  
+    <li><a href="/tags/iptables/">iptables</a><small>1</small></li>
+  
+    <li><a href="/tags/macports/">macports</a><small>1</small></li>
+  
+    <li><a href="/tags/openssl/">openssl</a><small>1</small></li>
+  
+    <li><a href="/tags/plist/">plist</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/workflow/">workflow</a><small>1</small></li>
+  
+    <li><a href="/tags/价值观/">价值观</a><small>1</small></li>
+  
+    <li><a href="/tags/内存管理/">内存管理</a><small>1</small></li>
+  
+    <li><a href="/tags/固态硬盘/">固态硬盘</a><small>1</small></li>
+  
+    <li><a href="/tags/新浪微博SDK/">新浪微博SDK</a><small>1</small></li>
+  
+  </ul>
 </div>
 
 </aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Evan Xu
+  
 </div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Evan. <br/>
-			his is my blog,believe it or not</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
-		
-		
-	</div>
-		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
-		
-		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
-
-
-
-
-
-
-  </body>
+</body>
 </html>

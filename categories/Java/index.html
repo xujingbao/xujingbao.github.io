@@ -1,192 +1,342 @@
-
-  <!DOCTYPE HTML>
-<html >
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   
-    <title>Category: Java | Evan&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Evan Xu">
-    
-    
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="xujingbao" />
-    <meta name="twitter:title" content="Category: Java | Evan&#39;s Blog" />
-      
-    
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <title>Java | Evan&#39;s Blog</title>
+  <meta name="author" content="Evan Xu">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Evan&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Evan&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
 </head>
 
-    <body>
-      <header>
-        <div>
-		
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
-				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:www.xujingbao.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
 
-      </header>
-      <div id="container">
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Evan&#39;s Blog</a></h1>
+  <h2><a href="/">Always believe that something wonderful is about to happen</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">Java</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-05-21T05:25:47.000Z"><a href="/2013/05/21/2013-05-21-javae79a84e58f82e695b0e4bca0e98092e4b88ei/">May 21 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/05/21/2013-05-21-javae79a84e58f82e695b0e4bca0e98092e4b88ei/">java的参数传递与i++</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>[java]</p>
+<p>public class Test {<br> public void add(Integer a)<br> {<br>   a=a++;<br> }</p>
+<p> public static void main(String[] args)<br> {<br>     Test test = new Test();<br>     Integer a = 1;<br>     test.add(a);<br>     System.err.println(a);<br> }<br>}</p>
+<p>[/java]</p>
+<p>问题是输出a的值是的多少？</p>
+<p>Integer a = 1；//因为1是基本数据类型，是不可以赋值给一个对象类型，但是Java提供的自动装箱，会自动将基本数据类型封装为对象类型。</p>
+<p>add(Integer a) //这里将a做为一个引用传递给add方法后，因为Integer类是属于不可变类，也就是不可以修改其属性值，所以在运算的时候，会自动将其拆箱，也就是将其转化为基本数据类型进行运算，所以这里的计算结果不会改变a的值。</p>
+<p>a=a++ // 因为++在a的后边，所以先使用a，就是i++这个表达式的值是1，但是并没有做赋值操作，它在整个语句的最后才做赋值，也就是说在做了++操作后再赋值的，所以最终结果还是1</p>
+
+      
+    </div>
+    <footer>
+      
         
-
-<div class="archive-title" >
-  <h2 class="category-icon">Java</h2>
-  
-</div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2013/05/21/2013-05-21-javae79a84e58f82e695b0e4bca0e98092e4b88ei/" title="java的参数传递与i++" itemprop="url">
-  
-    <h1 itemprop="name">java的参数传递与i++</h1>
-    
-    <time datetime="2013-05-21T05:25:47.000Z" itemprop="datePublished">May 21 2013</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2013/04/22/2013-04-22-javae8999ae68b9fe69cbae38081e58685e5ad98e6baa2e587bae38081e59e83e59cbee59b9ee694b6e79bb8e585b3/" title="Java虚拟机、内存溢出、垃圾回收相关" itemprop="url">
-  
-    <h1 itemprop="name">Java虚拟机、内存溢出、垃圾回收相关</h1>
-    
-    <time datetime="2013-04-22T14:35:42.000Z" itemprop="datePublished">Apr 22 2013</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/" title="Spring--quartz中cronExpression配置说明" itemprop="url">
-  
-    <h1 itemprop="name">Spring--quartz中cronExpression配置说明</h1>
-    
-    <time datetime="2012-02-16T07:50:48.000Z" itemprop="datePublished">Feb 16 2012</time>
-  </a>
-</section>
-
-
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-22T14:35:42.000Z"><a href="/2013/04/22/2013-04-22-javae8999ae68b9fe69cbae38081e58685e5ad98e6baa2e587bae38081e59e83e59cbee59b9ee694b6e79bb8e585b3/">Apr 22 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/22/2013-04-22-javae8999ae68b9fe69cbae38081e58685e5ad98e6baa2e587bae38081e59e83e59cbee59b9ee694b6e79bb8e585b3/">Java虚拟机、内存溢出、垃圾回收相关</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>一、java虚拟机</strong></p>
+<p>运行一个java程序，就会生成一个虚拟机实例，程序关闭，实例消亡。过main方法启动程序。 虚拟机内部有两种线程：守护线程和非守护线程。守护由虚拟机自己使用，例如执行垃圾回收的任务。main是非守护线程。</p>
+<p><strong>二、java虚拟机体系结构</strong></p>
+<p>类装载系统：装载类或借口</p>
+<p>执行引擎：</p>
+<p>运行时数据区：装载进来的class信息，程序对象，方法参数，返回值，局部变量。</p>
+<pre><code> 方法区和堆是所有线程共享。虚拟机装在一个<span class="class"><span class="keyword">class</span>文件时，从二进制文件中解析类型信息，把类型信息放到方法区中，程序运行时，把创建的对象放到堆中。</span>
+</code></pre><p>当一个线程创建时，会得到一个程序计数器，和java栈，计数器指向下一条将要执行的指令。栈保存了局部变量，参数，返回值，运算中间结果。栈由栈枕组成，一个栈帧是一个java方法调用的状态，线程调用一个方法，虚拟机就往栈中压入一个栈帧，方法返回时，栈帧弹出并抛弃。栈和计数器不能共享。</p>
+<p>三、垃圾回收</p>
+<p>Java堆中存放着程序创建的所有对象，GC可以自动释放堆中不再使用的对象</p>
+<p>四、内存溢出</p>
+<p>堆溢出：对象太多</p>
+<p>栈溢出：函数调用太多</p>
+<p>permgen space溢出：class太多</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-02-16T07:50:48.000Z"><a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/">Feb 16 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/">Spring--quartz中cronExpression配置说明</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>字段 允许值 允许的特殊字符<br>秒 0-59 , - <em> /<br>分 0-59 , - </em> /<br>小时 0-23 , - <em> /<br>日期 1-31 , - </em> ? / L W C<br>月份 1-12 或者 JAN-DEC , - <em> /<br>星期 1-7 或者 SUN-SAT , - </em> ? / L C #<br>年（可选） 留空, 1970-2099 , - * /</p>
+<p>The ‘<em>‘ character is used to specify all values. For example, “</em>“ in the minute field means “every minute”.<br>“<em>”字符被用来指定所有的值。如：”</em>“在分钟的字段域里表示“每分钟”。<br>The ‘?’ character is allowed for the day-of-month and day-of-week fields. It is used to specify ‘no specific value’. This is useful when you need to specify something in one of the two fileds, but not the other. See the examples below for clarification.<br>“?”字符只在日期域和星期域中使用。它被用来指定“非明确的值”。当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。看下面的例子你就会明白。<br>月份中的日期和星期中的日期这两个元素时互斥的一起应该通过设置一个问号(?)来表明不想设置那个字段</p>
+<p>The ‘-‘ character is used to specify ranges For example “10-12” in the hour field means “the hours 10, 11 and 12”.<br>“-”字符被用来指定一个范围。如：“10-12”在小时域意味着“10点、11点、12点”。</p>
+<p>The ‘,’ character is used to specify additional values. For example “MON,WED,FRI” in the day-of-week field means “the days Monday, Wednesday, and Friday”.<br>“,”字符被用来指定另外的值。如：“MON,WED,FRI”在星期域里表示”星期一、星期三、星期五”.</p>
+<p>The ‘/‘ character is used to specify increments. For example “0/15” in the seconds field means “the seconds 0, 15, 30, and 45”. And “5/15” in the seconds field means “the seconds 5, 20, 35, and 50”. Specifying ‘*’ before the ‘/‘ is equivalent to specifying 0 is the value to start with. Essentially, for each field in the expression, there is a set of numbers that can be turned on or off. For seconds and minutes, the numbers range from 0 to 59. For hours 0 to 23, for days of the month 0 to 31, and for months 1 to 12. The “/“ character simply helps you turn on every “nth” value in the given set. Thus “7/6” in the month field only turns on month “7”, it does NOT mean every 6th month, please note that subtlety.</p>
+<p>The ‘L’ character is allowed for the day-of-month and day-of-week fields. This character is short-hand for “last”, but it has different meaning in each of the two fields. For example, the value “L” in the day-of-month field means “the last day of the month” - day 31 for January, day 28 for February on non-leap years. If used in the day-of-week field by itself, it simply means “7” or “SAT”. But if used in the day-of-week field after another value, it means “the last xxx day of the month” - for example “6L” means “the last friday of the month”. When using the ‘L’ option, it is important not to specify lists, or ranges of values, as you’ll get confusing results.</p>
+<p>L是‘last’的省略写法可以表示day-of-month和day-of-week域，但在两个字段中的意思不同，例如day-of-month域中表示一个月的最后一天，<br>如果在day-of-week域表示‘7’或者‘SAT’，如果在day-of-week域中前面加上数字，它表示一个月的最后几天，例如‘6L’就表示一个月的最后一个<br>星期五，</p>
+<p>The ‘W’ character is allowed for the day-of-month field. This character is used to specify the weekday (Monday-Friday) nearest the given day. As an example, if you were to specify “15W” as the value for the day-of-month field, the meaning is: “the nearest weekday to the 15th of the month”. So if the 15th is a Saturday, the trigger will fire on Friday the 14th. If the 15th is a Sunday, the trigger will fire on Monday the 16th. If the 15th is a Tuesday, then it will fire on Tuesday the 15th. However if you specify “1W” as the value for day-of-month, and the 1st is a Saturday, the trigger will fire on Monday the 3rd, as it will not ‘jump’ over the boundary of a month’s days. The ‘W’ character can only be specified when the day-of-month is a single day, not a range or list of days<br>.<br>The ‘L’ and ‘W’ characters can also be combined for the day-of-month expression to yield ‘LW’, which translates to “last weekday of the month”.</p>
+<p>The ‘#’ character is allowed for the day-of-week field. This character is used to specify “the nth” XXX day of the month. For example, the value of “6#3” in the day-of-week field means the third Friday of the month (day 6 = Friday and “#3” = the 3rd one in the month). Other examples: “2#1” = the first Monday of the month and “4#5” = the fifth Wednesday of the month. Note that if you specify “#5” and there is not 5 of the given day-of-week in the month, then no firing will occur that month.</p>
+<p>The ‘C’ character is allowed for the day-of-month and day-of-week fields. This character is short-hand for “calendar”. This means values are calculated against the associated calendar, if any. If no calendar is associated, then it is equivalent to having an all-inclusive calendar. A value of “5C” in the day-of-month field means “the first day included by the calendar on or after the 5th”. A value of “1C” in the day-of-week field means “the first day included by the calendar on or after sunday”.<br>关于cronExpression的介绍:</p>
+<p>字段 允许值 允许的特殊字符<br>秒 0-59 , - <em> /<br>分 0-59 , - </em> /<br>小时 0-23 , - <em> /<br>日期 1-31 , - </em> ? / L W C<br>月份 1-12 或者 JAN-DEC , - <em> /<br>星期 1-7 或者 SUN-SAT , - </em> ? / L C #<br>年（可选） 留空, 1970-2099 , - <em> /<br>表达式意义<br>“0 0 12 </em> <em> ?” 每天中午12点触发<br>“0 15 10 ? </em> <em>“ 每天上午10:15触发<br>“0 15 10 </em> <em> ?” 每天上午10:15触发<br>“0 15 10 </em> <em> ? </em>“ 每天上午10:15触发<br>“0 15 10 <em> </em> ? 2005” 2005年的每天上午10:15触发<br>“0 <em> 14 </em> <em> ?” 在每天下午2点到下午2:59期间的每1分钟触发<br>“0 0/5 14 </em> <em> ?” 在每天下午2点到下午2:55期间的每5分钟触发<br>“0 0/5 14,18 </em> <em> ?” 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>“0 0-5 14 </em> <em> ?” 在每天下午2点到下午2:05期间的每1分钟触发<br>“0 10,44 14 ? 3 WED” 每年三月的星期三的下午2:10和2:44触发<br>“0 15 10 ? </em> MON-FRI” 周一至周五的上午10:15触发<br>“0 15 10 15 <em> ?” 每月15日上午10:15触发<br>“0 15 10 L </em> ?” 每月最后一日的上午10:15触发<br>“0 15 10 ? <em> 6L” 每月的最后一个星期五上午10:15触发<br>“0 15 10 ? </em> 6L 2002-2005” 2002年至2005年的每月的最后一个星期五上午10:15触发<br>“0 15 10 ? <em> 6#3” 每月的第三个星期五上午10:15触发<br>每天早上6点<br>0 6 </em> <em> </em><br>每两个小时<br>0 <em>/2 </em> <em> </em><br>晚上11点到早上8点之间每两个小时，早上八点<br>0 23-7/2，8 <em> </em> <em><br>每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>0 11 4 </em> 1-3<br>1月1日早上4点<br>0 4 1 1 *</p>
+<p>quartz的高级特性不仅如此<br>1 数据库存储<br>2 集群支持<br>3 数据库持久化任务，trigger<br>4 trigger 的停止，运行<br>5 任务的任意添加<br>6 比corntrigger 更详尽的任务安排<br>7 线程的内部数据交换</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:www.xujingbao.com">
+  </form>
 </div>
 
-      </div>
-      <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Evan. <br/>
-			his is my blog,believe it or not</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
-		
-		
-	</div>
-		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
-		
-		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
-		
-		</p>
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/categories/Mac/Github/">Github</a><small>1</small></li>
+  
+    <li><a href="/categories/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/OS/">OS</a><small>15</small></li>
+  
+    <li><a href="/categories/Other/">Other</a><small>2</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Ruby/">Ruby</a><small>2</small></li>
+  
+    <li><a href="/categories/Web tech/">Web tech</a><small>4</small></li>
+  
+    <li><a href="/categories/osx/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/categories/c/">c</a><small>1</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/osx/">osx</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/">pthread</a><small>1</small></li>
+  
+    <li><a href="/categories/c/pthread/timeout/">timeout</a><small>1</small></li>
+  
+    <li><a href="/categories/osx/brew/zsh/">zsh</a><small>1</small></li>
+  
+  </ul>
 </div>
-</footer>
-      <script src="/js/jquery-2.1.0.min.js"></script>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ARC/">ARC</a><small>1</small></li>
+  
+    <li><a href="/tags/Alfred/">Alfred</a><small>1</small></li>
+  
+    <li><a href="/tags/Amazon/">Amazon</a><small>1</small></li>
+  
+    <li><a href="/tags/Apache/">Apache</a><small>1</small></li>
+  
+    <li><a href="/tags/App Store/">App Store</a><small>1</small></li>
+  
+    <li><a href="/tags/DB tech/">DB tech</a><small>3</small></li>
+  
+    <li><a href="/tags/IP/">IP</a><small>1</small></li>
+  
+    <li><a href="/tags/MRC/">MRC</a><small>1</small></li>
+  
+    <li><a href="/tags/MacOS/">MacOS</a><small>1</small></li>
+  
+    <li><a href="/tags/NodeJs/">NodeJs</a><small>1</small></li>
+  
+    <li><a href="/tags/OS/">OS</a><small>2</small></li>
+  
+    <li><a href="/tags/QRals/">QRals</a><small>1</small></li>
+  
+    <li><a href="/tags/Ruby/">Ruby</a><small>1</small></li>
+  
+    <li><a href="/tags/SSD/">SSD</a><small>1</small></li>
+  
+    <li><a href="/tags/UIBarButtonItem/">UIBarButtonItem</a><small>1</small></li>
+  
+    <li><a href="/tags/UIButton/">UIButton</a><small>1</small></li>
+  
+    <li><a href="/tags/UITableViewCell/">UITableViewCell</a><small>1</small></li>
+  
+    <li><a href="/tags/UIWebView/">UIWebView</a><small>1</small></li>
+  
+    <li><a href="/tags/Uncrustify/">Uncrustify</a><small>1</small></li>
+  
+    <li><a href="/tags/Unix/">Unix</a><small>1</small></li>
+  
+    <li><a href="/tags/Web tech/">Web tech</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/Xcode/">Xcode</a><small>1</small></li>
+  
+    <li><a href="/tags/brew/">brew</a><small>1</small></li>
+  
+    <li><a href="/tags/htaccess/">htaccess</a><small>1</small></li>
+  
+    <li><a href="/tags/iOS/">iOS</a><small>1</small></li>
+  
+    <li><a href="/tags/iptables/">iptables</a><small>1</small></li>
+  
+    <li><a href="/tags/macports/">macports</a><small>1</small></li>
+  
+    <li><a href="/tags/openssl/">openssl</a><small>1</small></li>
+  
+    <li><a href="/tags/plist/">plist</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/workflow/">workflow</a><small>1</small></li>
+  
+    <li><a href="/tags/价值观/">价值观</a><small>1</small></li>
+  
+    <li><a href="/tags/内存管理/">内存管理</a><small>1</small></li>
+  
+    <li><a href="/tags/固态硬盘/">固态硬盘</a><small>1</small></li>
+  
+    <li><a href="/tags/新浪微博SDK/">新浪微博SDK</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Evan Xu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
 </script>
 
-
-
-
-
-
-
-    </body>
-   </html>
+</body>
+</html>
