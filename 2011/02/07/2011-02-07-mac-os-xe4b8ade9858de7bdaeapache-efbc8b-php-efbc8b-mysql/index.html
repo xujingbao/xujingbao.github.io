@@ -1,0 +1,493 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Mac OS X中配置Apache ＋ PHP ＋ MySQL | Evan&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Evan Xu">
+    
+    <meta name="description" content="Mac OS X 内置了Apache 和 PHP，这样使用起来非常方便。本文以Mac OS X 10.6.3为例。主要内容包括：">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="xujingbao" />
+    <meta name="twitter:title" content="Mac OS X中配置Apache ＋ PHP ＋ MySQL | Evan&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.xujingbao.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2011/02/07/2011-02-07-mac-os-xe4b8ade9858de7bdaeapache-efbc8b-php-efbc8b-mysql/" title="Mac OS X中配置Apache ＋ PHP ＋ MySQL" itemprop="url">Mac OS X中配置Apache ＋ PHP ＋ MySQL</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2011-02-07T03:14:45.000Z" itemprop="datePublished">Feb 7 2011</time>
+    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql"><span class="toc-number">1.</span> <span class="toc-text">mysql</span></a></li></ol>
+		</div>
+		
+		<p>Mac OS X 内置了Apache 和 PHP，这样使用起来非常方便。本文以Mac OS X 10.6.3为例。主要内容包括：<br><a id="more"></a></p>
+<ol>
+<li>启动Apache</li>
+<li>运行PHP</li>
+<li>安装MySQL</li>
+<li>使用phpMyAdmin</li>
+<li>配置PHP的MCrypt扩展库</li>
+<li>设置虚拟主机</li>
+</ol>
+<p>启动Apache</p>
+<p>有两种方法：</p>
+<ol>
+<li>打开“系统设置偏好（System Preferences）” -&gt; “共享（Sharing）” -&gt; “Web共享（Web Sharing）”</li>
+<li>打开“终端（terminal）”，然后</li>
+<li>运行“sudo apachectl start”，再输入帐号密码，这样Apache就运行了。</li>
+<li>运行“sudo apachectl －v”，你会看到Mac OS X 10.6.3中的Apache版本号：</li>
+</ol>
+<p>Server version: Apache/2.2.14 (Unix)<br>Server built:   Feb 11 2010 14:40:31</p>
+<p>这样在浏览器中输入“<a href="http://localhost”，就可以看到出现一个内容为“It" target="_blank">http://localhost”，就可以看到出现一个内容为“It</a> works!”的页面，它位于“/Library（资源库）/WebServer/Documents/”下，这是Apache的默认根目录。</p>
+<p>注意：开启了Apache就是开启了“Web共享”，这时联网的用户就会通过“<a href="http://[本地IP]/”来访问“/Library（资源库）" target="_blank">http://[本地IP]/”来访问“/Library（资源库）</a> /WebServer/Documents/”目录，通过“<a href="http://[本地IP]/~[用户名]”来访问“/Users/[用户名]/Sites" target="_blank">http://[本地IP]/~[用户名]”来访问“/Users/[用户名]/Sites</a> /”目录，可以通过设置“系统偏好设置”的“安全（Security）”中的“防火墙（Firewall）”来禁止这种访问。<br>运行PHP</p>
+<ol>
+<li>在终端中运行“sudo vi /etc/apache2/httpd.conf”，打开Apache的配置文件。（如果不习惯操作终端和vi的可以设置在Finder中显示所有的系统隐藏文件，记得需要重启Finder，这样就可以找到对应文件，随心所欲编辑了，但需要注意的是某些文件的修改需要开启root帐号，但整体上还是在终端上使用sudo来临时获取root权限比较安全。）</li>
+<li>找到“#LoadModule php5_module libexec/apache2/libphp5.so”，把前面的#号去掉，保存并退出vi。</li>
+<li>运行“sudo cp /etc/php.ini.default /etc/php.ini”，这样就可以通过php.ini来配置各种PHP功能了。比如：</li>
+</ol>
+<p>;通过下面两项来调整PHP提交文件的最大值，比如phpMyAdmin中导入数据的最大值<br>upload_max_filesize = 2M<br>post_max_size = 8M<br>;比如通过display_errors来控制是否显示PHP程序的报错<br>display_errors = Off</p>
+<ol>
+<li>运行“sudo apachectl restart”，重启Apache，这样PHP就可以用了。</li>
+<li>运行“cp /Library/WebServer/Documents/index.html.en /Library/WebServer/Documents/info.php”，即在Apache的根目录下复制index.html.en文件并重命名为info.php</li>
+<li>在终端中运行“vi /Library/WebServer/Document/info.php”，这样就可以在vi中编辑info.php文件了。在“It’s works!”后面加上“”，然后保存之。这样就可以在<a href="http://localhost/info.php中看到有关PHP的信息，比如版本号是5.3.1。" target="_blank">http://localhost/info.php中看到有关PHP的信息，比如版本号是5.3.1。</a></li>
+</ol>
+<p>安装MySQL</p>
+<p>由于Mac OS X中并没有预装MySQL，所以需要自己手动安装，目前MySQL的最稳定版本是5.1。MySQL提供了Mac OS X下的安装说明。</p>
+<ol>
+<li>下载MySQL 5.1。选择合适的版本，比如这里选择的是mysql-5.1.46-osx10.6-x86_64.dmg。</li>
+<li>运行dmg，会发现里面有4个文件。首先点击安装mysql-5.1.46-osx10.6-x86_64.pkg，这是MySQL的主安装包。一般情况下，安装文件会自动把MySQL安装到/usr/local下的同名文件夹下。比如点击运行“mysql-5.1.46-osx10.6- x86_64.dmg”会把MySQ安装到“/usr/local/mysql-5.1.46-osx10.6-x86_64”中。一路默认安装完毕即可。</li>
+<li>点击安装第2个文件MySQLStartupItem.pkg，这样MySQL就会自动在开机时自动启动了。</li>
+<li>点击安装第3个文件MySQL.prefPane，这样就会在“系统设置偏好”中看到名为“MySQL”的ICON，通过它就可以设置MySQL开始还是停止，以及是否开机时自动运行。到这里MySQL就基本安装完毕了。</li>
+<li>通过运行“sudo vi /etc/bashrc”，在bash的配置文件中加入mysql和mysqladmin的别名</li>
+</ol>
+<h1 id="mysql">mysql</h1>
+<p>alias mysql=’/usr/local/mysql/bin/mysql’<br>alias mysqladmin=’/usr/local/mysql/bin/mysqladmin’</p>
+<p>这样就可以在终端中比较简单地通过命令进行相应的操作，比如安装完毕之后MySQL的root默认密码为空，如果要设置密码可以在终端运行“mysqladmin -u root password “mysqlpassword””来设置，其中mysqlpassword即root的密码。更多相关内容可以参考B.5.4.1. How to Reset the Root Password。</p>
+<p>注意：Mac OS X的升级或者其他原因可能会导致ＭySQL启动或者开机自动运行，在ＭySQL的操作面板上会提示“Warning:The /usr/local/mysql/data directory is not owned by the ‘mysql’ or ‘_mysql’ ”，或者在命令行下提示“Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)”，这应该是某种情况下导致/usr/local/mysql/data的宿主发生了改变，只需要运行“sudo chown -R mysql /usr/local/mysql/data”即可。<br>使用phpMyAdmin</p>
+<p>phpMyAdmin是用PHP开发的管理MySQL的程序，非常的流行和实用。能够实用phpMyAdmin管理MySQL是检验前面几步成果的非常有效方式。</p>
+<ol>
+<li>下载phpMyAdmin。选择合适的版本，比如我选择的是phpMyAdmin-3.3.2-all-languages.tar.bz2这个版本。</li>
+<li>把“下载（downloads）”中的phpMyAdmin-3.32-all-languages文件夹复制到“/Users/[用户名]/Sites”中，名改名为phpmyadmin。</li>
+<li>复制“/Users/[用户名]/Sites/phpmyadmin/”中的config.sample.inc.php，并命名为config.inc.php</li>
+<li>打开config.inc.php,做如下修改：</li>
+</ol>
+<p>用于Cookie加密，随意的长字符串<br>$cfg[‘blowfish_secret’] = ‘’;</p>
+<p>当phpMyAdmin中出现“#2002 无法登录 MySQL 服务器”时，<br>请把localhost改成127.0.0.1就ok了，<br>这是因为MySQL守护程序做了IP绑定（bind-address =127.0.0.1）造成的<br>$cfg[‘Servers’][$i][‘host’] = ‘localhost’;</p>
+<p>把false改成true，这样就可以访问无密码的MySQL了，<br>即使MySQL设置了密码也可以这样设置，然后在登录phpMyAdmin时输入密码<br>$cfg[‘Servers’][$i][‘AllowNoPassword’] = false;</p>
+<ol>
+<li>这样就可以通过<a href="http://localhost/~[用户名]/phpmyadmin访问phpMyAdmin了。这个时候就看到一个提示“无法加载" target="_blank">http://localhost/~[用户名]/phpmyadmin访问phpMyAdmin了。这个时候就看到一个提示“无法加载</a> mcrypt 扩展，请检查您的 PHP 配置。”，这就涉及到下一节安装MCrypt扩展了。</li>
+</ol>
+<p>配置PHP的MCrypt扩展</p>
+<p>MCrypt是一个功能强大的加密算法扩展库，它包括有22种算法，phpMyAdmin依赖这个PHP扩展库。但是它在Mac OS X下的安装却不那么友善，具体如下：</p>
+<ol>
+<li>下载并解压libmcrypt-2.5.8.tar.bz2。</li>
+<li>在终端执行如下命令：</li>
+</ol>
+<p>cd ~/Downloads/libmcrypt-2.5.8/<br>./configure —disable-posix-threads —enable-static<br>make<br>sudo make install</p>
+<ol>
+<li>下载并解压PHP源码文件php-5.3.1.tar.bz2。Mac OS X 10.6.3中预装的PHP版本是5.3.1，而现在最新的PHP版本是5.3.2，你需要依据自己的实际情况选择对应的版本。</li>
+<li>在终端执行如下命令：</li>
+</ol>
+<p>cd ~/Downloads/php-5.3.1/ext/mcrypt<br>phpize<br>./configure<br>make<br>cd modules<br>sudo cp mcrypt.so /usr/lib/php/extensions/no-debug-non-zts-20090626/</p>
+<ol>
+<li>打开php.ini</li>
+</ol>
+<p>sudo vi /etc/php.ini</p>
+<p>在php.ini中加入如下代码，并保存后退出，然后重启Apache</p>
+<p>extension=/usr/lib/php/extensions/no-debug-non-zts-20090626/mcrypt.so</p>
+<p>当你再访问<a href="http://localhost/~[用户名]/phpmyadmin时，你会发现“无法加载" target="_blank">http://localhost/~[用户名]/phpmyadmin时，你会发现“无法加载</a> mcrypt 扩展，请检查您的 PHP 配置。”的提示没有了，这就表示MCrypt扩展库安装成功了。<br>设置虚拟主机</p>
+<ol>
+<li>在终端运行“sudo vi /etc/apache2/httpd.conf”，打开Apche的配置文件</li>
+<li>在httpd.conf中找到“#Include /private/etc/apache2/extra/httpd-vhosts.conf”，去掉前面的“＃”，保存并退出。</li>
+<li>运行“sudo apachectl restart”，重启Apache后就开启了它的虚拟主机配置功能。</li>
+<li>运行“sudo vi /etc/apache2/extra/httpd-vhosts.conf”，这样就打开了配置虚拟主机的文件httpd-vhost.conf，配置你需要的虚拟主机了。需要注意的是该文件默认开启了两个作为例子的虚拟主机：</li>
+</ol>
+<VirtualHost *:80><br>ServerAdmin webmaster@dummy-host.example.com<br>DocumentRoot “/usr/docs/dummy-host.example.com”<br>ServerName dummy-host.example.com<br>ErrorLog “/private/var/log/apache2/dummy-host.example.com-error_log”<br>CustomLog “/private/var/log/apache2/dummy-host.example.com-access_log” common<br></VirtualHost><br><VirtualHost *:80><br>ServerAdmin webmaster@dummy-host2.example.com<br>DocumentRoot “/usr/docs/dummy-host2.example.com”<br>ServerName dummy-host2.example.com<br>ErrorLog “/private/var/log/apache2/dummy-host2.example.com-error_log”<br>CustomLog “/private/var/log/apache2/dummy-host2.example.com-access_log” common<br></VirtualHost>
+
+<p>而实际上，这两个虚拟主机是不存在的，在没有配置任何其他虚拟主机时，可能会导致访问localhost时出现如下提示：</p>
+<p>Forbidden<br>You don’t have permission to access /index.php on this server</p>
+<p>最简单的办法就是在它们每行前面加上#，注释掉就好了，这样既能参考又不导致其他问题。</p>
+<ol>
+<li>增加如下配置</li>
+</ol>
+<VirtualHost *:80><br>DocumentRoot “/Users/[用户名]/Sites”<br>ServerName sites<br>ErrorLog “/private/var/log/apache2/sites-error_log”<br>CustomLog “/private/var/log/apache2/sites-access_log” common<br></VirtualHost>
+
+<p>保存退出，并重启Apache。</p>
+<ol>
+<li>运行“sudo vi /etc/hosts”，打开hosts配置文件，加入”127.0.0.1 sites“，这样就可以配置完成sites虚拟主机了，这样就可以用“<a href="http://sites”访问了，其内容和“http://localhost/~[用户名]”完全一致。" target="_blank">http://sites”访问了，其内容和“http://localhost/~[用户名]”完全一致。</a></li>
+</ol>
+<p>这是利用Mac OS X 10.6.3中原生支持的方式来实现的配置，也可以参考“Mac OS X Leopard: 配置Apache, PHP, SQLite, MySQL, and phpMyAdmin(一) ”和“Mac OS X Leopard: 配置Apache, PHP, SQLite, MySQL, and phpMyAdmin(二) ”。实际上，你还可以使用XAMPP或MacPorts这种第三方提供的集成方案来实现简单的安装和使用</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Apache/">Apache</a><a href="/tags/DB tech/">DB tech</a><a href="/tags/MacOS/">MacOS</a><a href="/tags/Web tech/">Web tech</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Web tech/">Web tech</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.xujingbao.com/2011/02/07/2011-02-07-mac-os-xe4b8ade9858de7bdaeapache-efbc8b-php-efbc8b-mysql/" data-title="Mac OS X中配置Apache ＋ PHP ＋ MySQL | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2011/03/16/2011-03-16-mysqle79a84e4ba8be58aa1e7aea1e79086e69cbae588b6/" title="MySQL的事务管理机制">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  MySQL的事务管理机制</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2011/02/07/2011-02-07-e6aeb5e9a1b5e5bc8fe58685e5ad98e7aea1e79086e4b8adefbc8ce980bbe8be91e59cb0e59d80efbc8ce7babfe680a7e59cb0e59d80efbc8ce789a9e79086e59cb0/"  title="段页式内存管理中，逻辑地址，线性地址，物理地址的区别">
+ <strong>NEXT:</strong><br/> 
+ <span>段页式内存管理中，逻辑地址，线性地址，物理地址的区别
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql"><span class="toc-number">1.</span> <span class="toc-text">mysql</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
+		
+			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		
+			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Evan. <br/>
+			his is my blog,believe it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
+		
+		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

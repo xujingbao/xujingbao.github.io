@@ -1,0 +1,354 @@
+@charset "utf-8"
+
+html {
+	height: 100%;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "STHeiti";
+	background-color: #e2e2e2;
+	min-width: 900px;
+}
+
+a:link, a:visited, a:active {
+	color: #1c7fdb;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #1785eb;
+	text-decoration: none;
+}
+
+a.orange:link, a.orange:visited, a.orange:active {
+	color: #ff9900;
+	text-decoration: none;
+}
+
+a.orange:hover {
+	color: #e18700;
+	text-decoration: underline;
+}
+
+/* IDs */
+
+#Root {
+	width: 800px;
+	margin: 30px auto 0px auto;
+	background-color: #fff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 2px solid rgba(0,0,0,0.05);
+	padding: 10px;
+	font-size: 15px;
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12);
+}
+
+#Bottom {
+	width: 800px;
+	margin: 0px auto 20px auto;
+	font-size: 10px;
+	color: #fff;
+	padding: 5px 10px 0px 10px;
+	text-align: right;
+}
+
+/* CLASSes */
+
+.sep {
+	margin: 10px 0px 10px 0px;
+	border-top: 1px solid #f0f0f0;
+}
+
+.column {
+	float: left;
+	font-size: 12px;
+	margin-right: 10px;
+	background-color: #fff;
+	padding: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.column:hover {
+	background-color: #f9f9f9;
+}
+
+.column_title {
+	color: #ccc;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.clear {
+	clear: both;
+}
+
+ul.nav {
+	padding: 0px;
+	margin: 6px 0px 0px 0px;
+	list-style: none;
+}
+
+ul.nav li {
+	padding: 4px 0px 0px 0px;
+	font-size: 14px;
+}
+
+.sl {
+	padding: 3px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 400px;
+	font-size: 16px;
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	font-family: "Panic Sans", Luxi Mono, "Courier New", Monaco;
+}
+
+.olive {
+	color: #3b3;
+}
+
+.super.button {
+	background-image: url("/static/img/bg_blended.png");
+	padding: 4px 15px 4px 15px;
+	border: 1px solid rgba(0,0,0,.25);
+	border-bottom-color: rgba(0,0,0,.35);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+.normal.button { background-color: #fff; color: #333; text-shadow: 0px 1px 1px #fff; text-decoration: none; font-weight: bold; }
+.normal.button:hover { background-color: #f0f0f0; color: #333; text-shadow: 0px 1px 1px #fff; text-decoration: none; text-decoration: none; font-weight: bold; cursor: pointer; }
+
+* 
+{
+	font-size: 1.0em;
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+/* TEXT */
+
+.has-js a,
+.has-js b.dot
+{
+	opacity: 0;
+}
+
+a
+{
+	position: relative;
+
+	color: #333;
+	text-decoration: none;
+	background-color: #eee;
+	padding: 0 0.25em; /* 3px/12px */
+	margin-left: -0.25em; /* -3px/12px */
+	border-radius: 0.25em; /* 3px/12px */
+}
+
+a:hover
+{
+	color: #00adee;
+	background-color: transparent;
+}
+
+/* LAYOUT */
+#content
+{
+	margin: 0 auto;
+	padding-left: 5.66666666666667em; /* 68px/12px */
+	max-width: 38.3333333333333em; /* 528px-68px/12px */
+	min-width: 35.6666666666667em; /* 480px-68px+16px/12px */
+}
+
+#intro
+{
+	padding: 2.66666666666667em 0; /* 32px/12px */
+	width: 25.9em; /* 312px/12px */
+	clear: both;
+	
+	position: relative;
+}
+
+#me
+{
+	position: absolute;
+	top: 1.66666666666667em; /* 20px/12px */
+	left: -4.33333333333333em; /* -52px/12px */
+}
+
+#kickstarter
+{
+	margin-bottom: 2.66666666666667em; /* 32px/12px */
+	margin-left: -0.75em; /* 8px/12px */
+	display: none;
+}
+
+#kickstarter a
+{
+	background-color: transparent;
+}
+
+#footer
+{
+	margin: 0 0 2.66666666666667em; /* 32px/12px */
+	clear: both;
+	
+	position: relative;
+	font-size: 0.75em; /* 9px/12px */
+}
+
+#copy
+{
+	position: absolute;
+	left: -1.08333333333333em; /* -13px/12px */
+}
+
+div.section,
+#output dl
+{
+	width: 10em; /* 120px/12px */ 
+	margin: 0 1.33333333333333em 2.66666666666667em 0; /* 16px/12px 32px/12px */
+	float: left;
+}
+
+#output
+{
+	width: 100%;
+	margin: 0;
+}
+
+#output #book
+{
+	margin-bottom: 0;
+}
+
+#output #music
+{
+	width: 21.3333333333333em; /* 256px/12px */
+}
+
+#partnership
+{
+	clear: both;
+}
+
+/* HEADSHOT */
+
+#me
+{
+	width: 3em; /* 36px/12px */
+	height: 6em; /* 72px/12px */
+	background: url(me-18.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -moz-crisp-edges;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+#me img { display: none; }
+
+/* disabled scaling for Kickstarter graphic */
+/* SCALE */
+
+@media (max-width:1024px) {
+	body
+	{
+		font-size: 16px;
+	}
+	
+	#me
+	{
+		background-image: url(me-16.png);
+	}
+}
+
+@media (max-width:768px) {
+	body
+	{
+		font-size: 14px;
+	}
+	
+	#me
+	{
+		background-image: url(me-14.png);
+	}
+}
+
+@media (max-width:640px) {
+	body
+	{
+		font-size: 12px;
+	}
+	
+	#me
+	{
+		background-image: url(me-12.png);
+	}
+}
+
+@media (max-width:540px) {
+	body
+	{
+		font-size: 10px;
+	}
+	
+	#me
+	{
+		background-image: url(me-10.png);
+	}
+}
+/**/
+
+@media (-moz-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {	
+	/* Mobile Safari renders better with the default font-size */
+	/* I don't add an .is-mobile-safari via JS because that causes a FOPSC */
+	body
+	{
+		font-size: 20px;
+	}
+	
+	#me
+	{
+		background-image: url(me.png); /* extra big for retina display */
+	}
+}
+
+/* DOTS */
+b.dot
+{
+	display: inline-block;
+	width: 0.83333333333333em; /* 10px/12px */
+	height: 0.83333333333333em; /* 10px/12px */
+	border-radius: 0.41666666666667em; /* 5px/12px */
+	position: relative;
+}
+
+#twitter { background-color: #00adee; }
+#blog { background-color: #999; }
+#mint { background-color: #aad86a; }
+#fever { background-color: #c62d20; }
+#flipsescape { background-color: #088; }
+#lastrocket { background-color: #f8b800; }
+#liftoff { background-color: #e45c10; }
+#dayo { background-color: #eee; }
+#noisees { background-color: #e40058; }
+#clewland { background-color: #00b800; }
+
+[touch-action="none"]
+{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }

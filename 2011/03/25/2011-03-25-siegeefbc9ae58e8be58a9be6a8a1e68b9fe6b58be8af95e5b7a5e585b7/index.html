@@ -1,0 +1,409 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Siege：压力模拟/测试工具 | Evan&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Evan Xu">
+    
+    <meta name="description" content="Siege（英文意思是围攻）是一个压力测试和评测工具，设计用于WEB开发这评估应用在压力下的承受能力：可以根据配置对一个WEB站点进行多用户的并发访问，记录每个用户所有请求过程的相应时间，并在一定数量的并发访问下重复进行。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="xujingbao" />
+    <meta name="twitter:title" content="Siege：压力模拟/测试工具 | Evan&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.xujingbao.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2011/03/25/2011-03-25-siegeefbc9ae58e8be58a9be6a8a1e68b9fe6b58be8af95e5b7a5e585b7/" title="Siege：压力模拟/测试工具" itemprop="url">Siege：压力模拟/测试工具</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2011-03-25T01:32:15.000Z" itemprop="datePublished">Mar 25 2011</time>
+    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#make_install"><span class="toc-number">1.</span> <span class="toc-text">make install</span></a></li></ol>
+		</div>
+		
+		<p>Siege（英文意思是围攻）是一个压力测试和评测工具，设计用于WEB开发这评估应用在压力下的承受能力：可以根据配置对一个WEB站点进行多用户的并发访问，记录每个用户所有请求过程的相应时间，并在一定数量的并发访问下重复进行。</p>
+<a id="more"></a>
+
+<p>最早使用的压力测试工具是apache的ab(apache benchmark)，apache ab做重复压力测试不错，但是每次只能测试一个链接，如何测试一组链接（比如从日志中导出的1个小时的日志，做真实压力测试），后来找到了这个：<br>Siege是一个压力测试和评测工具，设计用于WEB开发这评估应用在压力下的承受能力：可以根据配置对一个WEB站点进行多用户的并发访问，记录每个用户所有请求过程的相应时间，并在一定数量的并发访问下重复进行。<br>SIEGE is an http regressive testing and benchmarking utility. It was designed to let web developers measure the performance of their code under duress, to see how it will stand up to load on the internet. It lets the user hit a webserver with a configurable number of concurrent simulated users. Those users place the webserver “under siege.” The duration of the siege is measured in transactions, the sum of simulated users and the number of times each simulated user repeats the process of hitting the server. Thus 20 concurrent users 50 times is 1000 transactions, the length of the test.</p>
+<p>下载/安装<br>Siege时一个开放源代码项目：<a href="http://www.joedog.org/siege/" target="_blank">http://www.joedog.org/siege/</a></p>
+<p>下载：<br>wget ftp://sid.joedog.org/pub/siege/siege-latest.tar.gz</p>
+<p>安装：<br>%./configure ; make</p>
+<h1 id="make_install">make install</h1>
+<p>siege包含了一组压力测试工具：<br>SIEGE (1) Siege是一个HTTP压力测试和评测工具.<br>使用样例：<br>任务列表：www.chedong.com.url文件<br><a href="http://www.chedong.com/tech/" target="_blank">http://www.chedong.com/tech/</a><br><a href="http://www.chedong.com/tech/acdsee.html" target="_blank">http://www.chedong.com/tech/acdsee.html</a><br><a href="http://www.chedong.com/tech/ant.html" target="_blank">http://www.chedong.com/tech/ant.html</a><br><a href="http://www.chedong.com/tech/apache_install.html" target="_blank">http://www.chedong.com/tech/apache_install.html</a><br><a href="http://www.chedong.com/tech/awstats.html" target="_blank">http://www.chedong.com/tech/awstats.html</a><br><a href="http://www.chedong.com/tech/cache.html" target="_blank">http://www.chedong.com/tech/cache.html</a><br><a href="http://www.chedong.com/tech/click.html" target="_blank">http://www.chedong.com/tech/click.html</a><br><a href="http://www.chedong.com/tech/cms.html" target="_blank">http://www.chedong.com/tech/cms.html</a><br><a href="http://www.chedong.com/tech/compress.html" target="_blank">http://www.chedong.com/tech/compress.html</a><br><a href="http://www.chedong.com/tech/cvs_card.html" target="_blank">http://www.chedong.com/tech/cvs_card.html</a><br><a href="http://www.chedong.com/tech/default.html" target="_blank">http://www.chedong.com/tech/default.html</a><br><a href="http://www.chedong.com/tech/dev.html" target="_blank">http://www.chedong.com/tech/dev.html</a><br><a href="http://www.chedong.com/tech/gnu.html" target="_blank">http://www.chedong.com/tech/gnu.html</a><br>….</p>
+<p>siege -c 20 -r 2 -f www.chedong.com.url<br>参数说明：<br>-c 20 并发20个用户<br>-r 2 重复循环2次<br>-f www.chedong.com.url 任务列表：URL列表</p>
+<p>输出样例：</p>
+<p><strong> Siege 2.59
+</strong> Preparing 20 concurrent users for battle. 这次“战斗”准备了20个并发用户<br>The server is now under siege.. done. 服务在“围攻”测试中：<br>Transactions: 40 hits 完成40次处理<br>Availability: 100.00 % 成功率<br>Elapsed time: 7.67 secs 总共用时<br>Data transferred: 877340 bytes 共数据传输：877340字节<br>Response time: 1.65 secs 相应用时1.65秒：显示网络连接的速度<br>Transaction rate: 5.22 trans/sec 平均每秒完成5.22次处理：表示服务器后台处理的速度<br>Throughput: 114385.92 bytes/sec 平均每秒传送数据：114385.92字节<br>Concurrency: 8.59 最高并发数 8.59<br>Successful transactions: 40 成功处理次数<br>Failed transactions: 0 失败处理次数</p>
+<p>注意：由于速度很快，可能会达不到并发速度很高就已经完成。Response time显示的是测试机器和被测试服务器之间网络链接状况。Transaction rate则表示服务器端任务处理的完成速度。</p>
+<p>辅助工具：<br>增量压力测试：</p>
+<p>为了方便增量压力测试，siege还包含了一些辅助工具：<br>bombardment (1)<br>是一个辅助工具：用于按照增量用户压力测试：<br>使用样例：<br>bombardment urlfile.txt 5 3 4 1<br>初始化URL列表：urlfile.txt<br>初始化为：5个用户<br>每次增加：3个用户<br>运行：4次<br>每个客户端之间的延迟为：1秒</p>
+<p>输出成CSV格式：<br>siege2csv.pl (1)<br>siege2csv.pl将bombardment的输出变成CSV格式：<br>Time Data Transferred Response Time Transaction Rate Throughput Concurrency Code 200 (note that this is horribly broken.)<br>242 60.22 603064 0.02 4.02 10014.35 0.08<br>605 59.98 1507660 0.01 10.09 25136.05 0.12<br>938 59.98 2337496 0.02 15.64 38971.26 0.26<br>1157 60 2883244 0.04 19.28 48054.07 0.78</p>
+<p>参考：<br>开源测试工具：<a href="http://www.opensourcetesting.org/performance.php" target="_blank">http://www.opensourcetesting.org/performance.php</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/OS/">OS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.xujingbao.com/2011/03/25/2011-03-25-siegeefbc9ae58e8be58a9be6a8a1e68b9fe6b58be8af95e5b7a5e585b7/" data-title="Siege：压力模拟/测试工具 | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2011/03/25/2011-03-25-sqlstate00000-1040-too-many-connections/" title="SQLSTATE[00000] [1040] Too many connections">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  SQLSTATE[00000] [1040] Too many connections</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2011/03/16/2011-03-16-mysqle79a84e4ba8be58aa1e7aea1e79086e69cbae588b6/"  title="MySQL的事务管理机制">
+ <strong>NEXT:</strong><br/> 
+ <span>MySQL的事务管理机制
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#make_install"><span class="toc-number">1.</span> <span class="toc-text">make install</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
+		
+			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		
+			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Evan. <br/>
+			his is my blog,believe it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
+		
+		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

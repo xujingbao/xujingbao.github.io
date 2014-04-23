@@ -1,0 +1,423 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MacPorts和Homebrew | Evan&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Evan Xu">
+    
+    <meta name="description" content="Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="xujingbao" />
+    <meta name="twitter:title" content="MacPorts和Homebrew | Evan&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.xujingbao.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/04/25/2013-04-25-macportse5928chomebrew/" title="MacPorts和Homebrew" itemprop="url">MacPorts和Homebrew</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-04-25T15:54:09.000Z" itemprop="datePublished">Apr 25 2013</time>
+    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts："><span class="toc-number">1.</span> <span class="toc-text">如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Homebrew:"><span class="toc-number">2.</span> <span class="toc-text">安装Homebrew:</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#等完毕后就安装好了,安装在了/usr/local目录下,可通过brew_-v查看版本号"><span class="toc-number"></span> <span class="toc-text">等完毕后就安装好了,安装在了/usr/local目录下,可通过brew -v查看版本号</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过Homebrew安装软件:"><span class="toc-number">1.</span> <span class="toc-text">通过Homebrew安装软件:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它Homebrew指令:"><span class="toc-number">2.</span> <span class="toc-text">其它Homebrew指令:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除Homebrew:"><span class="toc-number">3.</span> <span class="toc-text">删除Homebrew:</span></a></li></ol>
+		</div>
+		
+		<p>Mac OS X是基于Unix的操作系统，可以安装大部分为Unix/Linux开发的软件。然而，如果只是以使用为目的，对每个软件都进行手工编译不是很方便，也不利于管理已安装的软件，于是出现了类似于Linux中APT、Yum等类似的软件包管理系统，其中最著名的有MacPorts、Fink、Homebrew等。</p>
+<a id="more"></a>
+
+<p>Macport比较古老了，Fink木有用过，brew比较流行。如果你还在Macport，那就赶紧弃暗投明吧；），不过macports和brew是不兼容的。</p>
+<h2 id="如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts：">如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts：</h2>
+<blockquote>
+<p>[shell]<br>sudo port -f uninstall installed<br>sudo rm -rf<br>/opt/local<br>/Applications/DarwinPorts<br>/Applications/MacPorts<br>/Library/LaunchDaemons/org.macports.<em><br>/Library/Receipts/DarwinPorts</em>.pkg<br>/Library/Receipts/MacPorts*.pkg<br>/Library/StartupItems/DarwinPortsStartup<br>/Library/Tcl/darwinports1.0<br>/Library/Tcl/macports1.0<br>~/.macports<br>[/shell]</p>
+</blockquote>
+<h2 id="安装Homebrew:">安装Homebrew:</h2>
+<blockquote>
+<p>[shell]<br>curl -L <a href="http://github.com/mxcl/homebrew/tarball/master" target="_blank">http://github.com/mxcl/homebrew/tarball/master</a> |<br>tar xz –strip 1 -C /usr/local<br>export PATH=/usr/local/bin:$PATH<br>[/shell]</p>
+</blockquote>
+<h1 id="等完毕后就安装好了,安装在了/usr/local目录下,可通过brew_-v查看版本号">等完毕后就安装好了,安装在了/usr/local目录下,可通过brew -v查看版本号</h1>
+<h2 id="通过Homebrew安装软件:">通过Homebrew安装软件:</h2>
+<p>查找你需要的软件使用brew search <em> 命令,安装使用brew install </em>命令(用具体的软件名称替换*),例如安装wget:</p>
+<blockquote>
+<p>[shell]<br>brew search wget<br>brew install wget<br>[/shell]</p>
+</blockquote>
+<h2 id="其它Homebrew指令:">其它Homebrew指令:</h2>
+<blockquote>
+<p>[shell]<br>brew list   —列出已安装的软件<br>brew update   —更新Homebrew<br>brew home  <em>—用浏览器打开<br>brew info   </em>—显示软件内容信息<br>brew deps <em> — 显示包依赖<br>brew server </em>  —启动web服务器，可以通过浏览器访问<a href="http://localhost:4567/" target="_blank">http://localhost:4567/</a> 来同网页来管理包<br>brew -h brew   —帮助<br>[/shell]</p>
+</blockquote>
+<h2 id="删除Homebrew:">删除Homebrew:</h2>
+<blockquote>
+<p>[shell]<br>cd <code>brew –prefix</code><br>rm -rf Cellar<br>brew prune<br>rm -rf Library .git .gitignore bin/brew README.md share/man/man1/brew<br>rm -rf ~/Library/Caches/Homebrew<br>[/shell]</p>
+</blockquote>
+<p>更多关于brew的介绍 <a href="http://blog.jjgod.org/2009/12/21/homebrew-package-management/" target="_blank">http://blog.jjgod.org/2009/12/21/homebrew-package-management/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/brew/">brew</a><a href="/tags/macports/">macports</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/OS/">OS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.xujingbao.com/2013/04/25/2013-04-25-macportse5928chomebrew/" data-title="MacPorts和Homebrew | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/04/26/2013-04-25-rubye78eafe5a283e5ae89e8a385e4b8ad/" title="Ruby环境安装过程">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Ruby环境安装过程</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/04/22/2013-04-22-javae8999ae68b9fe69cbae38081e58685e5ad98e6baa2e587bae38081e59e83e59cbee59b9ee694b6e79bb8e585b3/"  title="Java虚拟机、内存溢出、垃圾回收相关">
+ <strong>NEXT:</strong><br/> 
+ <span>Java虚拟机、内存溢出、垃圾回收相关
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts："><span class="toc-number">1.</span> <span class="toc-text">如果安装了MacPorts就不能安装homebrew，必须先卸载MacPorts：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Homebrew:"><span class="toc-number">2.</span> <span class="toc-text">安装Homebrew:</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#等完毕后就安装好了,安装在了/usr/local目录下,可通过brew_-v查看版本号"><span class="toc-number"></span> <span class="toc-text">等完毕后就安装好了,安装在了/usr/local目录下,可通过brew -v查看版本号</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过Homebrew安装软件:"><span class="toc-number">1.</span> <span class="toc-text">通过Homebrew安装软件:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它Homebrew指令:"><span class="toc-number">2.</span> <span class="toc-text">其它Homebrew指令:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除Homebrew:"><span class="toc-number">3.</span> <span class="toc-text">删除Homebrew:</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
+		
+			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		
+			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Evan. <br/>
+			his is my blog,believe it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
+		
+		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

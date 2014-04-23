@@ -1,0 +1,496 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS开发常用的开源类库和一些示例 | Evan&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Evan Xu">
+    
+    <meta name="description" content="MBProgressHUD_——进展指示符库&quot;&gt;MBProgressHUD ——进展指示符库
+苹果的应用程序一般都会用一种优雅的，半透明的进度显示效果，不过这个API是不公开的，因此你要是用了，很可能被清除出AppStore。而 MBProgressHUD提供了一个替代方案，而且在用户角度上，实现的效果根本看不出和官方程序有什么差别。同时还提供了其他附加功能，比如虚拟进展 指示符，以及完成提示信息。整合到项目里也很容易，这里不细谈了。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="xujingbao" />
+    <meta name="twitter:title" content="iOS开发常用的开源类库和一些示例 | Evan&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.xujingbao.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2011/08/25/2011-08-25-iose5bc80e58f91e5b8b8e794a8e79a84e5bc80e6ba90e7b1bbe5ba93e5928ce4b880e4ba9be7a4bae4be8b/" title="iOS开发常用的开源类库和一些示例" itemprop="url">iOS开发常用的开源类库和一些示例</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2011-08-25T13:27:53.000Z" itemprop="datePublished">Aug 25 2011</time>
+    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">1.</span> <span class="toc-text"> ——进展指示符库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">2.</span> <span class="toc-text"> ——HTTP Network库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">3.</span> <span class="toc-text"> ——JSON支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">4.</span> <span class="toc-text"> ——详尽的使用统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">5.</span> <span class="toc-text"> ——正则表达式支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">6.</span> <span class="toc-text"> ——Facebook API类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">7.</span> <span class="toc-text"> ——简化网络图片处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">8.</span> <span class="toc-text"> ——iPhone上所有Google相关服务的类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">9.</span> <span class="toc-text"> ——2D图形绘图仪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">10.</span> <span class="toc-text"> ——通用iOS库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扫描wifi信息"><span class="toc-number">11.</span> <span class="toc-text">扫描wifi信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条形码扫描"><span class="toc-number">12.</span> <span class="toc-text">条形码扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp/ip的通讯协议"><span class="toc-number">13.</span> <span class="toc-text">tcp/ip的通讯协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#voip/sip"><span class="toc-number">14.</span> <span class="toc-text">voip/sip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#720全景显示panoramagl"><span class="toc-number">15.</span> <span class="toc-text">720全景显示panoramagl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jabber_client"><span class="toc-number">16.</span> <span class="toc-text">jabber client</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLBlocks"><span class="toc-number">17.</span> <span class="toc-text">PLBlocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#image_processing"><span class="toc-number">18.</span> <span class="toc-text">image processing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64编码解码"><span class="toc-number">19.</span> <span class="toc-text">base64编码解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml解析"><span class="toc-number">20.</span> <span class="toc-text">xml解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全保存用户密码到keychain中"><span class="toc-number">21.</span> <span class="toc-text">安全保存用户密码到keychain中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载等待特效框架(private_api)"><span class="toc-number">22.</span> <span class="toc-text">加载等待特效框架(private api)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下拉刷新代码"><span class="toc-number">23.</span> <span class="toc-text">下拉刷新代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步加载图片并缓存代码"><span class="toc-number">24.</span> <span class="toc-text">异步加载图片并缓存代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iphone_TTS"><span class="toc-number">25.</span> <span class="toc-text">iphone TTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">26.</span> <span class="toc-text">OAuth认证</a></span></a></li></ol>
+		</div>
+		
+		<h3 id="<a_href="http://github-com/jdg/MBProgressHUD" target="_blank">MBProgressHUD</a>_——进展指示符库"><a href="http://github.com/jdg/MBProgressHUD" target="_blank">MBProgressHUD</a> ——进展指示符库</h3>
+<p>苹果的应用程序一般都会用一种优雅的，半透明的进度显示效果，不过这个API是不公开的，因此你要是用了，很可能被清除出AppStore。而 MBProgressHUD提供了一个替代方案，而且在用户角度上，实现的效果根本看不出和官方程序有什么差别。同时还提供了其他附加功能，比如虚拟进展 指示符，以及完成提示信息。整合到项目里也很容易，这里不细谈了。</p>
+<a id="more"></a>
+
+
+<h3 id="<a_href="http://allseeing-i-com/ASIHTTPRequest/" target="_blank">ASIHttpRequest</a>_——HTTP_Network库"><a href="http://allseeing-i.com/ASIHTTPRequest/" target="_blank">ASIHttpRequest</a> ——HTTP Network库</h3>
+<p>iPhone当然也有自己的HTTP Network API，那为什么要用ASIHttpRequest呢？因为官方的API简直跟话痨似的，太罗嗦了！ASIHttpRequest库极大的简化了网络通 信，提供更先进的工具，什么文件上传工具，重定向处理工具、验证工具、等等。只要你手头的东西跟HTTP有关，用这个绝对能让你感觉道生活有美好！先看一 段代码就体会到了。</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p><code>- (</code> <code>void</code> <code>) loadAppDevMag</code></p>
+<p><code>{</code></p>
+<p><code>` </code>NSURL *url = [NSURL URLWithString:@<code>`&quot;[http://www.appdevmag.com](http://www.appdevmag.com/) &quot;</code> <code>];</code></p>
+<p><code>` </code>ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];`</p>
+<p><code>` </code>[request setDelegate:self];`</p>
+<p><code>` </code>[request startAsynchronous];`</p>
+<p><code>}</code></p>
+<p><code>- (</code> <code>void</code> <code>)requestFinished:(ASIHTTPRequest *)request</code></p>
+<p><code>{</code></p>
+<p><code>` </code>// Use when fetching text data`</p>
+<p><code>` </code>NSString *responseString = [request responseString];`</p>
+<p><code>} ]</code></p>
+<h3 id="<a_href="http://stig-github-com/json-framework/" target="_blank">JSON_Framework</a>_——JSON支持"><a href="http://stig.github.com/json-framework/" target="_blank">JSON Framework</a> ——JSON支持</h3>
+<p>如果你做的应用和网站服务器有交互，那就得用到JSON了。但事实上，iOS平台的原生类库根本就不支持JSON，这就略犀利了吧？不过JSON框 架满足了你的所有需求，包括一个解析器将JSON字符串解析成对象；以及一个生成器从对象生成字符串。这个库根本就是太流行了，JSON提过很多次了，具 体特点就不多讲了，所谓“一段代码胜千言”，下面用一段代码演示一下吧。</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p><code>// JSON string -&gt; NSDictionary</code></p>
+<p><code>` </code>NSString *jsonString = @<code>`&quot;{\&quot;foo\&quot;: \&quot;bar\&quot;}&quot;</code> <code>;</code></p>
+<p><code>` </code>NSDictionary *dictionary = [jsonString JSONValue];`</p>
+<p><code>NSLog(@</code> <code>&quot;Dictionary value for \&quot;foo\&quot; is \&quot;%@\&quot;&quot;</code> <code>, [dictionary objectForKey:@</code> <code>&quot;foo&quot;</code> <code>]);</code></p>
+<p><code>` </code>// NSDictionary -&gt; JSON string`</p>
+<p><code>NSString *newJsonString = [dictionary JSONRepresentation];</code></p>
+<h3 id="<a_href="http://www-flurry-com/product/analytics/index-html" target="_blank">Flurry</a>_——详尽的使用统计"><a href="http://www.flurry.com/product/analytics/index.html" target="_blank">Flurry</a> ——详尽的使用统计</h3>
+<p>通过Furry你可以得到应用的用户人数，用户活跃度，用户来源等统计信息。但是他最厉害的地方是，你可以追踪应用本身的事件和错误记录，所有这些数据都会在一个类似Google Analytics的界面上显示，这样就很容易掌握用户的行为和出现的问题。</p>
+<h3 id="<a_href="http://regexkit-sourceforge-net/RegexKitLite/" target="_blank">RegexKitLite</a>_——正则表达式支持"><a href="http://regexkit.sourceforge.net/RegexKitLite/" target="_blank">RegexKitLite</a> ——正则表达式支持</h3>
+<p>正则表达式大家都知道。但是iPhone SDK居然当他不存在？这怎么能忍啊！果断用RegexKitLite。虽然叫的是Lite，但是功能很full。示例代码</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p><code>// finds phone number in format nnn-nnn-nnnn</code></p>
+<p><code>NSString *regEx = @</code> <code>&quot;[0-9]{3}-[0-9]{3}-[0-9]{4}&quot;</code> <code>;</code></p>
+<p><code>for</code> <code>(NSString *match in [textView.text componentsMatchedByRegex:regEx]) {</code></p>
+<p><code>` </code>NSLog(@<code>`&quot;Phone number is %@&quot;</code> <code>, match);</code></p>
+<p><code>}</code></p>
+<h3 id="<a_href="http://github-com/facebook/facebook-ios-sdk" target="_blank">Facebook_iOS_SDK</a>_——Facebook_API类库"><a href="http://github.com/facebook/facebook-ios-sdk" target="_blank">Facebook iOS SDK</a> ——Facebook API类库</h3>
+<p>大体来讲就是iPhone上的Facebook login，完全支持Facebook Graph API和the older REST api</p>
+<h3 id="<a_href="http://github-com/rs/SDWebImage" target="_blank">SDWebImage</a>_——简化网络图片处理"><a href="http://github.com/rs/SDWebImage" target="_blank">SDWebImage</a> ——简化网络图片处理</h3>
+<p>用SDWebImage调用网站上的图片，跟本地调用内置在应用包里的图片一样简单。操作也很简单；<br>类似的功能在Three20里也有，这个过会儿再说。相比而言，SDWebImage主要是提供一个小而精的简捷方便的解决方案。</p>
+<h3 id="<a_href="http://code-google-com/p/gdata-objectivec-client/" target="_blank">GData_client</a>_——iPhone上所有Google相关服务的类库"><a href="http://code.google.com/p/gdata-objectivec-client/" target="_blank">GData client</a> ——iPhone上所有Google相关服务的类库</h3>
+<p>跟Google相关的，值得一提的是，这个项目很开放。有很多示例程序供下载。</p>
+<h3 id="<a_href="http://code-google-com/p/core-plot/" target="_blank">CorePlot</a>_——2D图形绘图仪"><a href="http://code.google.com/p/core-plot/" target="_blank">CorePlot</a> ——2D图形绘图仪</h3>
+<p>CorePlot有很多解决方案将你的数据可视。，同时也会提供各种迷人的图形效果，比如棒状图、饼状图、线状图等等，在他们网站上也提供了大量的范例图形，很多股票价格应用，游戏分数，个人财务管理都在用。</p>
+<h3 id="<a_href="http://github-com/facebook/three20" target="_blank">CThree20</a>_——通用iOS库"><a href="http://github.com/facebook/three20" target="_blank">CThree20</a> ——通用iOS库</h3>
+<p>Three20类库是Facebook自己做的，大而全是他最大的特色。把他整合到已有的项目中可能得费点周折，不过如果一开始你就用上了Three20，尤其是牵扯到很多web相关的项目的时候，你就能深刻体会到神马叫给力了。</p>
+<h3 id="扫描wifi信息">扫描wifi信息</h3>
+<p><a href="http://code.google.com/p/uwecaugmentedrealityproject/">http://code.google.com/p/uwecaugmentedrealityproject/
+</a><a href="http://code.google.com/p/iphone-wireless/" target="_blank">http://code.google.com/p/iphone-wireless/</a></p>
+<h3 id="条形码扫描">条形码扫描</h3>
+<p><a href="http://zbar.sourceforge.net/iphone/sdkdoc/install.html" target="_blank">http://zbar.sourceforge.net/iphone/sdkdoc/install.html</a></p>
+<h3 id="tcp/ip的通讯协议">tcp/ip的通讯协议</h3>
+<p><a href="http://code.google.com/p/cocoaasyncsocket/" target="_blank">http://code.google.com/p/cocoaasyncsocket/</a></p>
+<h3 id="voip/sip">voip/sip</h3>
+<p><a href="http://code.google.com/p/siphon/" target="_blank">http://code.google.com/p/siphon/</a><br><a href="http://code.google.com/p/asterisk-voicemail-for-iphone/" target="_blank">http://code.google.com/p/asterisk-voicemail-for-iphone/</a><br><a href="http://code.google.com/p/voiphone/" target="_blank">http://code.google.com/p/voiphone/</a></p>
+<h3 id="720全景显示panoramagl">720全景显示panoramagl</h3>
+<p><a href="http://code.google.com/p/panoramagl/" target="_blank">http://code.google.com/p/panoramagl/</a></p>
+<h3 id="jabber_client">jabber client</h3>
+<p><a href="http://code.google.com/p/ichabber/" target="_blank">http://code.google.com/p/ichabber/</a></p>
+<h3 id="PLBlocks">PLBlocks</h3>
+<p><a href="http://code.google.com/p/plblocks/" target="_blank">http://code.google.com/p/plblocks/</a></p>
+<h3 id="image_processing">image processing</h3>
+<p><a href="http://code.google.com/p/simple-iphone-image-processing/" target="_blank">http://code.google.com/p/simple-iphone-image-processing/</a></p>
+<h3 id="base64编码解码">base64编码解码</h3>
+<p><a href="http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/Foundation/?r=87" target="_blank">http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/Foundation/?r=87</a></p>
+<h3 id="xml解析">xml解析</h3>
+<p><a href="https://github.com/schwa/TouchXML" target="_blank">https://github.com/schwa/TouchXML</a></p>
+<h3 id="安全保存用户密码到keychain中">安全保存用户密码到keychain中</h3>
+<p><a href="https://github.com/ldandersen/scifihifi-iphone" target="_blank">https://github.com/ldandersen/scifihifi-iphone</a></p>
+<h3 id="加载等待特效框架(private_api)">加载等待特效框架(private api)</h3>
+<p><a href="https://github.com/jdg/MBProgressHUD" target="_blank">https://github.com/jdg/MBProgressHUD</a></p>
+<h3 id="下拉刷新代码">下拉刷新代码</h3>
+<p><a href="https://github.com/enormego/EGOTableViewPullRefresh" target="_blank">https://github.com/enormego/EGOTableViewPullRefresh</a></p>
+<h3 id="异步加载图片并缓存代码">异步加载图片并缓存代码</h3>
+<p><a href="http://www.markj.net/iphone-asynchronous-table-image/" target="_blank">http://www.markj.net/iphone-asynchronous-table-image/</a></p>
+<h3 id="iphone_TTS">iphone TTS</h3>
+<p><a href="https://bitbucket.org/sfoster/iphone-tts" target="_blank">https://bitbucket.org/sfoster/iphone-tts</a></p>
+<h3 id="<a_href="http://devnote-me/2011/04/ios%e5%bc%80%e5%8f%91%e5%b8%b8%e7%94%a8%e7%9a%84%e5%bc%80%e6%ba%90%e7%b1%bb%e5%ba%93%e5%92%8c%e4%b8%80%e4%ba%9b%e7%a4%ba%e4%be%8b/OAuth%E8%AE%A4%E8%AF%81" target="_blank">OAuth认证</a>"><a href="http://devnote.me/2011/04/ios%e5%bc%80%e5%8f%91%e5%b8%b8%e7%94%a8%e7%9a%84%e5%bc%80%e6%ba%90%e7%b1%bb%e5%ba%93%e5%92%8c%e4%b8%80%e4%ba%9b%e7%a4%ba%e4%be%8b/OAuth%E8%AE%A4%E8%AF%81" target="_blank">OAuth认证</a></h3>
+<p><a href="http://code.google.com/p/oauth/" target="_blank">http://code.google.com/p/oauth/</a></p>
+<p><a href="http://code.google.com/p/oauthconsumer/" target="_blank">http://code.google.com/p/oauthconsumer/</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.xujingbao.com/2011/08/25/2011-08-25-iose5bc80e58f91e5b8b8e794a8e79a84e5bc80e6ba90e7b1bbe5ba93e5928ce4b880e4ba9be7a4bae4be8b/" data-title="iOS开发常用的开源类库和一些示例 | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2011/09/07/2011-09-07-viewe6b7bbe58aa0e782b9e587bbe696b9e6b395/" title="view添加点击方法">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  view添加点击方法</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2011/08/21/2011-08-21-wordpresse9a696e9a1b5e58fafe4bba5e68993e5bc80e38081e585b6e4bb96e9a1b5e99da2e697a0e6b395e68993e5bc80/"  title="WordPress首页可以打开、其他页面无法打开">
+ <strong>NEXT:</strong><br/> 
+ <span>WordPress首页可以打开、其他页面无法打开
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">1.</span> <span class="toc-text"> ——进展指示符库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">2.</span> <span class="toc-text"> ——HTTP Network库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">3.</span> <span class="toc-text"> ——JSON支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">4.</span> <span class="toc-text"> ——详尽的使用统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">5.</span> <span class="toc-text"> ——正则表达式支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">6.</span> <span class="toc-text"> ——Facebook API类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">7.</span> <span class="toc-text"> ——简化网络图片处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">8.</span> <span class="toc-text"> ——iPhone上所有Google相关服务的类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">9.</span> <span class="toc-text"> ——2D图形绘图仪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">10.</span> <span class="toc-text"> ——通用iOS库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扫描wifi信息"><span class="toc-number">11.</span> <span class="toc-text">扫描wifi信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条形码扫描"><span class="toc-number">12.</span> <span class="toc-text">条形码扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp/ip的通讯协议"><span class="toc-number">13.</span> <span class="toc-text">tcp/ip的通讯协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#voip/sip"><span class="toc-number">14.</span> <span class="toc-text">voip/sip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#720全景显示panoramagl"><span class="toc-number">15.</span> <span class="toc-text">720全景显示panoramagl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jabber_client"><span class="toc-number">16.</span> <span class="toc-text">jabber client</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PLBlocks"><span class="toc-number">17.</span> <span class="toc-text">PLBlocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#image_processing"><span class="toc-number">18.</span> <span class="toc-text">image processing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64编码解码"><span class="toc-number">19.</span> <span class="toc-text">base64编码解码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml解析"><span class="toc-number">20.</span> <span class="toc-text">xml解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全保存用户密码到keychain中"><span class="toc-number">21.</span> <span class="toc-text">安全保存用户密码到keychain中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载等待特效框架(private_api)"><span class="toc-number">22.</span> <span class="toc-text">加载等待特效框架(private api)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下拉刷新代码"><span class="toc-number">23.</span> <span class="toc-text">下拉刷新代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步加载图片并缓存代码"><span class="toc-number">24.</span> <span class="toc-text">异步加载图片并缓存代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iphone_TTS"><span class="toc-number">25.</span> <span class="toc-text">iphone TTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#<a_href="><span class="toc-number">26.</span> <span class="toc-text">OAuth认证</a></span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
+		
+			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		
+			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Evan. <br/>
+			his is my blog,believe it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
+		
+		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,494 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>SSD的写入放大 - Write amplification | Evan&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Evan Xu">
+    
+    <meta name="description" content="写入放大（WA）是闪存和固态硬盘之间相关联的一个属性，因为闪存必须先删除才能改写（我们也叫“编程“），在执行这些操作的时候，移动（或重写）用户数据和元数据(metadata)不止一次。这些多次的操作，不但增加了写入数据量，减少了SSD的使用寿命，而且还吃光了闪存的带宽（间接地影响了随机写入性能）。许多因素会影响到SSD的写入放大，下面我就来稍微详细的解释一下。
+早在2008年，Intel公司和SiliconSystems公司（2009 年被西部数字收购）第一次提出了写入放大并在公开稿件里用到这个术语。他们当时的说法是，写入算法不可能低于1，但是这种说法在2009年被SandForce打破，SandForce说他们的写入放大是0.5。
+基本SSD操作方式：">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="xujingbao" />
+    <meta name="twitter:title" content="SSD的写入放大 - Write amplification | Evan&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Evan&#39;s Blog">Evan&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Always believe that something wonderful is about to happen</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:www.xujingbao.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2012/07/02/2012-07-02-ssde79a84e58699e585a5e694bee5a4a7-write-amplification/" title="SSD的写入放大 - Write amplification" itemprop="url">SSD的写入放大 - Write amplification</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.xujingbao.com" title="Evan Xu">Evan Xu</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2012-07-02T03:09:35.000Z" itemprop="datePublished">Jul 2 2012</time>
+    Updated:<time datetime="2013-11-14T01:03:50.000Z" itemprop="dateModified">Nov 14 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><strong>写入放大（WA）</strong>是闪存和固态硬盘之间相关联的一个属性，因为闪存必须先删除才能改写（我们也叫“编程“），在执行这些操作的时候，移动（或重写）用户数据和元数据(metadata)不止一次。这些多次的操作，不但增加了写入数据量，减少了SSD的使用寿命，而且还吃光了闪存的带宽（间接地影响了随机写入性能）。许多因素会影响到SSD的写入放大，下面我就来稍微详细的解释一下。</p>
+<p>早在2008年，Intel公司和SiliconSystems公司（2009 年被西部数字收购）第一次提出了写入放大并在公开稿件里用到这个术语。他们当时的说法是，写入算法不可能低于1，但是这种说法在2009年被SandForce打破，SandForce说他们的写入放大是0.5。</p>
+<p><strong>基本SSD操作方式：</strong></p>
+<a id="more"></a>
+
+
+<p><a href="http://www.xujingbao.com/wp-content/uploads/2012/07/76592e077bec54e70a9377a6b9389b504ec26afe.jpg"><img src="http://www.xujingbao.com/wp-content/uploads/2012/07/76592e077bec54e70a9377a6b9389b504ec26afe.jpg" alt=""></a></p>
+<p>由于闪存的运作特性，数据不能像在普通机械硬盘里那样被直接覆盖。当数据第一次写入SSD的时候，由于SSD内所有的颗粒都为已擦除状态，所以数据能够以页为最小单位直接写入进去（一般是4K，参考颗粒资料），SSD上的主控制器，使用了逻辑和物理的映射系统来管理着闪存。（逻辑我们一般指的是LBA,而物理指的是FTL)。当有新的数据写入时需要替换旧的数据时，SSD主控制器将把新的数据写入到另外的空白的闪存空间上（已擦除状态）然后更新逻辑LBA地址来指向到新的物理FTL地址。而旧的地址内容就变成了无效的数据，但是要在上面再次写入的话，就需要首先擦除掉这个无效数据。（闪存运作特性，写入最小单位是页，而擦除最小单位是块，一般为128~256个页）<br>那么问题就来了，闪存有编程和擦除的次数限制，这样每次的编程/擦除就叫做1个P/E(program/erase cycles)周期，大家应该都知道MLC一般是5000~10000次，而SLC是10万次左右（查闪存资料）。也就是说写入放大越低，P/E周期就越少，闪存寿命就越久。</p>
+<p><strong>写入放大的计算</strong></p>
+<p>2008年，Intel公司和SiliconSystems公司（2009 年被西部数字收购）第一次提出了写入放大并在公开稿件里用到这个术语。所有的SSD都有一个写入放大值，这个数值是非固定的，取决于这个SSD写入的数据是随机的还是持续的？写入量是多少？主控做了那些操作，等等。</p>
+<p>计算写入放大的公式大致是这样:</p>
+<p><a href="http://www.xujingbao.com/wp-content/uploads/2012/07/ef68ede554e736d1126ce1b09b504fc2d46269fe.jpg"><img src="http://www.xujingbao.com/wp-content/uploads/2012/07/ef68ede554e736d1126ce1b09b504fc2d46269fe.jpg" alt=""></a></p>
+<p>对于单次操作，最简单的例子，比如我要写入一个4KB的数据，最坏的情况就是，一个块里已经没有干净空间了，但是有无效数据可以擦除，所以主控就把所有的数据读出来，擦除块，再加上这个4KB新数据写回去，这个操作带来的写入放大就是: 我实际写4K的数据，造成了整个块（512KB）的写入操作，那就是128倍放大。同时带来了原本只需要简单的写4KB的操作变成读取(512KB)，擦(512KB)，改写(512KB)，造成了延迟大大增加，速度慢是自然了。</p>
+<p><strong>影响写入放大的因素</strong></p>
+<p>许多因素影响SSD的写入放大。下面我列出了主要因素，以及它们如何影响写放大。</p>
+<ol>
+<li>垃圾回收(GC) Garbage collection —-虽然增加了写入放大，但是速度有提升。</li>
+</ol>
+<p>这个比较特殊的算法用来整理，移动，合并，删除闪存块来提升效率。</p>
+<ol>
+<li>预留空间（OP) Over-provisioning —-减少写入放大，好。(预留空间越大，写入放大越低）</li>
+</ol>
+<p>在SSD的闪存上划出一部分空间留给主控做优化，用户不能操作的空间。</p>
+<p>3.TRIM开启后可以减少写入放大，好。</p>
+<p>一个ATA指令，由操作系统发送给SSD主控，告诉主控哪些数据是无效的并且可以不用做垃圾回收操作。</p>
+<ol>
+<li>可用容量减少写入放大，好。(可用空间越大，写入放大越低）</li>
+</ol>
+<p>用户使用中没有用到的空间，需要有Trim支持，不然不会影响写入放大。</p>
+<ol>
+<li>安全擦除 Secure Erase减少写入放大，好</li>
+</ol>
+<p>清除所有用户数据和相关元数据，让SSD重置到初始性能。</p>
+<ol>
+<li>静动数据分离 Separating Static and Dynamic Data减少写入放大，好</li>
+</ol>
+<p>分组常改写和不常改写的数据。</p>
+<ol>
+<li>持续写入 Sequential writes减少写入放大，好</li>
+</ol>
+<p>理论上来说，持续写入的写入放大为1，但是某些因素还是会影响这个数值。</p>
+<ol>
+<li>随机写入 Random writes提高写入放大，不好</li>
+</ol>
+<p>随机写入会写入很多非连续的LBA,将会大大提升写入放大。</p>
+<ol>
+<li>磨损平衡（WL） Wear Leveling直接提高写入放大，不好</li>
+</ol>
+<p>确保闪存的每个块被写入的次数相等的一种机制。<br><strong>垃圾回收 Garbage collection</strong></p>
+<p><a href="http://www.xujingbao.com/wp-content/uploads/2012/07/3c069a3a8744ebf81d1e0987d9f9d72a6159a78e.jpg"><img src="http://www.xujingbao.com/wp-content/uploads/2012/07/3c069a3a8744ebf81d1e0987d9f9d72a6159a78e.jpg" alt=""></a></p>
+<p>一旦SSD的所有块都已经写入了一次，SSD主控制器将会初始化那些包含无效数据的块。（陈旧数据，这些块里的数据已经被更新的数据替换，已经无效了，没了LBA地址），现在他们正在等待被删除，以便新的数据可以写入其中,如何优化并整理这些个等待被删除的无效数据，这个算法被称为垃圾收集（GC）。我们可以看出这个操作是要有前提的，就是SSD必须要支持Trim技术，不然GC就显不出他的优势了（这也是为啥目前只有支持Trim的SSD才会有GC功能），而GC的本质区别是它们何时处理？效率多少？</p>
+<p>数据的最小写入单位是页，然而擦除的最小单位是块（大小取决于闪存，自己查资料，一般128~256页）。如果在块上的某些页中的数据不再需要，与在该块内好的数据的其他所有页必须全部读取并重新写入到新的已擦除的块内。这个操作叫做Copy Block，每个主控都会带。（包括U盘主控，这也是为了磨损平衡考虑）然后主控制器再删除掉这个块，用来给下一次写入数据用。这种操作一切指令来自主控而非用户的叫做GC，将会影响写入放大。请记住，GC有点像整理硬盘，所以要保证有一定的可用容量，可用容量越大，GC效率越高</p>
+<p>GC分为后台GC和主动GC</p>
+<p>我们知道垃圾的收集过程，包括读取和重写数据到闪存。意味着这样操作会大大降低主控的性能，因为占用了主控的能力和带宽。所以，一些SSD控制器采用所谓的后台垃圾收集算法（也称为闲置垃圾收集），该控制器会使用空闲的时间来做垃圾收集，让主控在使用时一直保持高性能。<br>试想一下如果垃圾回收把所有的空间都整理合并过了，那样在性能提升的同时，也增加了写入放大，所以像barefoot主控的SSD（闲置GC）一般只垃圾回收一小部分的空白空间来限制过多的写入操作。另一种方案就是主动GC，这需要有相当性能的主控制器，来保证在操作数据的同时进行GC操作，这类GC适合在服务器里用到，因为个人用户可以把电脑闲置了做GC，但是服务器可不行，所以要保证性能的话必须在运行的同时做GC，这对主控制器的性能提出了很高的要求，SandForce的主控就是这类。。</p>
+<p>手动GC</p>
+<p>乘着现在正好讨论到写入放大，我也再次强调下为何写入GC能成功的道理：</p>
+<p>不管你的SSD是不是支持Trim或者在RAID阵列状态下，手动GC或多或少都会有点作用（特殊的除外），为何？</p>
+<p>SSD的NAND颗粒有2个状态，物理上来说就是颗粒充电表示1，颗粒放电表示0，擦除数据意味着全盘写1（充电）。颗粒必须以块为最小单位一下子充电，能以页为单位一个个放电。前面我们得知，如果SSD不支持Trim的话（RAID阵列目前都不支持），在全部SSD写满后，主控并不知道颗粒的块中哪些数据是无效的，所以它认为他们都有效，操作系统的LBA却知道（因为新数据有LBA,无效数据的LBA已经被重定向了），所以不支持Trim的SSD就意味着全盘颗粒写满后（指的是颗粒写满，其中包括有效和无效数据，不是我们通常看到的系统里可用容量满）再写入数据要等待写前的擦除操作，系统就会在没用到的LBA地址下做写入操作。说白了就是系统知道哪里可以写而SSD主控不知道。手动GC正是利用了这一点，做了全盘填FF操作，FF在逻辑上就是1，那么就是全盘颗粒里的无效数据处填1，1在NAND颗粒上代表充电，代表擦除。所以随着用户的可用容量越来越少，然后再一下子删除这个生成出来的大文件，代表了全部可用容量区域都为逻辑1（擦除状态），这个状态就是GC操作后删除无效数据区块后的状态，所以叫做手动GC，自然这些区块在之后的操作中可以直接写入而不需要再擦除了。</p>
+<p><strong>预留空间 Over-provisioning</strong></p>
+<p>预留空间一般是指用户不可操作的容量，为实际物理闪存容量减去用户可用容量。这块取用一般被用来做优化，包括磨损均衡，GC,Trim和坏块映射。</p>
+<p>预留空间分为3层：</p>
+<p><a href="http://www.xujingbao.com/wp-content/uploads/2012/07/2c8ac2ee36d12f2e877ac3d84fc2d562843568fe.jpg"><img src="http://www.xujingbao.com/wp-content/uploads/2012/07/2c8ac2ee36d12f2e877ac3d84fc2d562843568fe.jpg" alt=""></a></p>
+<p>第一层为固定的7.37%，这个数字是如何得出的哪？我们知道机械硬盘和SSD的厂商容量是这样算的，1GB是1,000,000,000字节（10的9次方），但是闪存的实际容量是每GB=1,073,741,824，(2的30次方) ，2者相差7.37%。所以说假设1块128GB的SSD，用户得到的容量是128,000,000,000字节，多出来的那个7.37%就被主控固件用做OP了。</p>
+<p>第二层来自制造商的设置，通常为0%，7%和28%等，打个比方，对于128G颗粒的SandForce主控SSD,市场上会有120G和100G两种型号卖，这个取决于厂商的固件设置，这个容量不包括之前的第一层7.37%。</p>
+<p>第三层是用户在日常使用中可以分配的预留空间，像Fusion-IO公司还给用户工具自己调节大小来满足不同的耐用度和性能，而用户也可以自己在分区的时候，不分到完全的SSD容量来达到同样的目的。（要有Trim支持）</p>
+<p>预留空间虽然让SSD的可用容量小了，但是带来了减少写入放大，提高耐久，提高性能的效果。</p>
+<p><strong>TRIM</strong></p>
+<p>Trim是一种SATA命令，他能让操作系统在删除某个文件或者格式化后告诉SSD主控这个数据块不再需要了。</p>
+<p>一般情况下，当LBA被操作系统更新后，只有随着之后的每次数据写入（其实等于覆盖），SSD主控制器才知道这个地址原来早已经失效了。（之前认为每个数据都是有效的）在Win7里，由于Trim的引入解决了这个问题，当某些文件被删除或者格式化了整个分区，操作系统把Trim指令和在操作中更新的LBA一起发给SSD主控制器（其中包含了无效数据地址），这样在之后的GC操作中，无效数据就能被清空了，减少了写入放大同时也提升了性能。<br><strong>
+</strong></p>
+<p>Trim的依赖性和局限性</p>
+<ol>
+<li><p>Trim命令需要SSD的支持，某些老型号的SSD可以靠刷新固件得到Trim支持（G2,barefoot,YK40），或者用一些独特的工具（barefoot wiper)提取出系统里所有无效的LBA告诉SSD主控并清除。</p>
+</li>
+<li><p>Trim命令之后，速度并不一定是立马就能提升的，因为Trim后的干净空间可能随机的包含在每个块里，只有等着多次的copy block操作和主控的GC操作才能明显感觉到速度的提升。</p>
+</li>
+<li><p>就算操作系统，驱动，SSD主控固件都满足Trim命令了，也不代表在某些特定环境下能工作，比如RAID阵列和数据库（至少到目前为止）。</p>
+</li>
+</ol>
+<p><strong>可用空间</strong></p>
+<p>SSD控制器会使用所有的可用空间做垃圾回收和磨损均衡。保证一定的可用空间可以提升SSD效率，减少写入放大。（前提是支持Trim)</p>
+<p><strong>安全擦除 Secure erase</strong></p>
+<p>ATA安全擦除命令用来清除在磁盘上的所有用户数据，这个指令会让SSD回到出厂性能（最优性能，最少写入放大），但是随着之后的使用，GC，写入放大又会慢慢增加回来。</p>
+<p>许多软件使用ATA安全擦除指令来重置磁盘，最著名的为HDDErase。对SSD来说，重置就是全盘加电（逻辑1），瞬间即可完成清除所有数据让SSD回到初始状态。</p>
+<p><strong>静动数据分离 Separating Static and Dynamic Data</strong></p>
+<p>高端SSD主控制器支持静态和动态数据的分离处理，此操作要求SSD主控制器对LBA里经常写入（动态数据，热数据）和不经常写入（静态数据，冷数据）的数据块进行归类，因为如果块里包含了静态和动态数据，在做GC操作的时候会为了改写其实没必要改写的静态数据而增加了写入放大，所以把包含静态数据的块归类后，因为不常改写，减少了写入放大。但是迟早SSD主控会把这块静态的数据转移到别的地方来弥补平衡磨损。（因为静态数据占着的数据块一直不改写，编程次数低于平均值的话，会造成颗粒磨损不平衡，违背了WL，真够矛盾的。）</p>
+<p><strong>持续写入</strong></p>
+<p>当SSD持续的写入数据时，写入放大一般为1，原因是随着数据写入，整个块都是持续的填充着同一个文件，如果系统确认这个文件需要改写或者删除，整个块都可以被标记为无效（需要Trim支持），自然就不需要之后的GC操作了。（读取整个块并写入新的块）这个块只需要擦除，比读，改，写更快速有效。</p>
+<p>[b随机写入</p>
+<p>一个SSD主控的随机写入峰值速度一般发生在安全擦除后，完全GC，全盘Trim，或新安装的状态下。<br>而随机写入的能力取决于主控制器的1.通道数。2.固件效率。3.闪存颗粒写入页面的性能。<br>然后就是写入放大的多少，越接近于1越好，小于1更那好。<br>当全盘颗粒都被写过后，GC功能就将被启用，速度就会受到影响，之后的写入放大就会达到SSD主控制器的最大倍数。大量的随机小文件的写入是“闪存杀手”。</p>
+<p><strong>磨损平衡（WL） Wear Leveling</strong></p>
+<p><a href="http://www.xujingbao.com/wp-content/uploads/2012/07/0381a0d82f2eb938a412174ad5628535e4dd6ffe.jpg"><img src="http://www.xujingbao.com/wp-content/uploads/2012/07/0381a0d82f2eb938a412174ad5628535e4dd6ffe.jpg" alt=""></a></p>
+<p>假设一个特定的块被持续的编程写入而不编程写入到别的块，那么这个块将很快被消耗掉编程寿命，造成整个SSD的报废。<br>处于这个原因，SSD主控制器要平均分配每个块的编程次数，这个技术叫做磨损平衡。<br>在最乐观的情况下，这个技术会让全盘的颗粒磨损程度接近并同时报废。<br>可惜的是这个技术要牺牲写入放大，假设对于冷数据，必须经常的移动到别的块，再把热数据移过来，保证2边的块都是一样的磨损度，无谓的增加了写入次数。<br>关键就是要找一个最优化的算法来尽可能的同时最佳化这2个矛盾的条件。</p>
+<p>总结：</p>
+<p>写入放大是个很关键的SSD指标，我们知道闪存的写入速度比读取速度慢的多，所以现在的SSD主控制器用多通道来提升写入速度（相对写入速度，读取速度其实早已经不是啥大问题了），但是如果写入放大太高，意味着一样的操作需要写入更多的数据，这样速度自然就快不起来了。</p>
+<p>废话那么多，就是想说好主控和坏主控之间的性能差别主要就是体现在放大上，你想想，假设大家都一样的通道数，颗粒也相同，可是差别为何那么大？说白了就是一个写的少而另个写的多了嘛。一切算法技术的根本目标是要尽可能的减少写入放大。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SSD/">SSD</a><a href="/tags/固态硬盘/">固态硬盘</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/OS/">OS</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.xujingbao.com/2012/07/02/2012-07-02-ssde79a84e58699e585a5e694bee5a4a7-write-amplification/" data-title="SSD的写入放大 - Write amplification | Evan&#39;s Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2012/07/09/2012-07-09-amazone79a84e6a0b8e5bf83e4bbb7e580bce8a782/" title="Amazon的核心价值观">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Amazon的核心价值观</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2012/02/16/2012-02-16-spring-quartze4b8adcronexpressione9858de7bdaee8afb4e6988e/"  title="Spring--quartz中cronExpression配置说明">
+ <strong>NEXT:</strong><br/> 
+ <span>Spring--quartz中cronExpression配置说明
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Mac/Github/" title="Github">Github<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>3</sup></a></li>
+		
+			<li><a href="/categories/Life/" title="Life">Life<sup>5</sup></a></li>
+		
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/categories/OS/" title="OS">OS<sup>15</sup></a></li>
+		
+			<li><a href="/categories/Other/" title="Other">Other<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		
+			<li><a href="/categories/Ruby/" title="Ruby">Ruby<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Web tech/" title="Web tech">Web tech<sup>4</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/" title="brew">brew<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		
+			<li><a href="/categories/osx/" title="osx">osx<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/" title="pthread">pthread<sup>1</sup></a></li>
+		
+			<li><a href="/categories/c/pthread/timeout/" title="timeout">timeout<sup>1</sup></a></li>
+		
+			<li><a href="/categories/osx/brew/zsh/" title="zsh">zsh<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/ARC/" title="ARC">ARC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Alfred/" title="Alfred">Alfred<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apache/" title="Apache">Apache<sup>1</sup></a></li>
+		
+			<li><a href="/tags/App Store/" title="App Store">App Store<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DB tech/" title="DB tech">DB tech<sup>3</sup></a></li>
+		
+			<li><a href="/tags/IP/" title="IP">IP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MRC/" title="MRC">MRC<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MacOS/" title="MacOS">MacOS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/OS/" title="OS">OS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/QRals/" title="QRals">QRals<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Ruby/" title="Ruby">Ruby<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SSD/" title="SSD">SSD<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIBarButtonItem/" title="UIBarButtonItem">UIBarButtonItem<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UITableViewCell/" title="UITableViewCell">UITableViewCell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIWebView/" title="UIWebView">UIWebView<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Uncrustify/" title="Uncrustify">Uncrustify<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Unix/" title="Unix">Unix<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Evan. <br/>
+			his is my blog,believe it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1566057524" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/xujingbao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/xujingbao" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by Hexo and Theme by Pacman and Hosted with ❤ by GitHub © 2014 
+		
+		<a href="http://www.xujingbao.com" target="_blank" title="Evan Xu">Evan Xu</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
