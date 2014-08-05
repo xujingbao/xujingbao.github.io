@@ -65,6 +65,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2011-09-20T12:12:33.000Z"><a href="/2011/09/20/2011-09-20-iose8aebee7bdaee697b6e58cbae8bdace68da2/">Sep 20 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/09/20/2011-09-20-iose8aebee7bdaee697b6e58cbae8bdace68da2/">ios设置时区转换</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>有的时候为了在系统中统一时间，需要在服务器和客户端统一交换的时间时区，比如都用GMT。<br>iPhone上转换的代码如下：</p>
+<p>NSDate <em>now = [NSDate date];<br>NSLog(@”%@”,[now description]);<br>NSTimeZone </em>defaultTimeZone = [NSTimeZone defaultTimeZone];<br>NSTimeZone *tzGMT = [NSTimeZone timeZoneWithName:@”GMT”];<br>[NSTimeZone setDefaultTimeZone:tzGMT];<br>NSLog(@”%@”,[now description]); //已经是 GMT表示了<br>[NSTimeZone setDefaultTimeZone:defaultTimeZone]; // 设置会用户默认的</p>
+<p>或者：</p>
+<p>[NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@”CMT”]];</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2011-09-20T12:10:48.000Z"><a href="/2011/09/20/2011-09-20-e5ae9ae4bd8de6ba90e4bba3e7a081e4bd8de7bdaee79a84e7b3bbe7bb9fe5ae8f/">Sep 20 2011</a></time>
       
       
@@ -524,59 +572,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-03-25T06:17:38.000Z"><a href="/2011/03/25/2011-03-25-linux-e69fa5e79c8be69cbae599a8e9858de7bdaee4bfa1e681af/">Mar 25 2011</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/03/25/2011-03-25-linux-e69fa5e79c8be69cbae599a8e9858de7bdaee4bfa1e681af/">Linux 查看机器配置信息</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>#cat /proc/cpuinfo</strong></p>
-<p>processor 从0开始计数，flags 如果有ht 说明和支持超线程技术(附1)。</p>
-<p><strong>#cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c </strong><br>1  Intel(R) Pentium(R) Dual  CPU  E2180  @ 2.00GHz</p>
-<p>查看CPU信息，这里信息显示只有1个逻辑CPU,型号为 E2180</p>
-<p><strong>#cat /proc/cpuinfo | grep processor | wc -l </strong><br>1</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2011/03/25/2011-03-25-linux-e69fa5e79c8be69cbae599a8e9858de7bdaee4bfa1e681af/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -606,7 +601,7 @@
   
     <li><a href="/categories/Java/">Java</a><small>3</small></li>
   
-    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+    <li><a href="/categories/Life/">Life</a><small>7</small></li>
   
     <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
   

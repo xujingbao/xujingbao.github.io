@@ -69,6 +69,292 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-04-25T17:07:50.000Z"><a href="/2013/04/26/2013-04-25-rubye78eafe5a283e5ae89e8a385e4b8ad/">Apr 26 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/26/2013-04-25-rubye78eafe5a283e5ae89e8a385e4b8ad/">Ruby环境安装过程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+</pre></td><td class="code"><pre>$ sudo su
+Password:
+sh-3.2# rvm -v
+Can't find rvm install!
+sh-3.2# curl -L get.rvm.io | bash -s stable
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   184  100   184    0     0    358      0 <span class="comment">--:--:-- --:--:-- --:--:--  1082</span>
+100 13409  100 13409    0     0   7791      0  0:00:01  0:00:01 <span class="comment">--:--:-- 51972</span>
+Downloading RVM from wayneeseguin branch stable
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   124  100   124    0     0    116      0  0:00:01  0:00:01 <span class="comment">--:--:--   148</span>
+100 3263k  100 3263k    0     0   173k      0  0:00:18  0:00:18 <span class="comment">--:--:--  362k</span>
+
+Installing RVM to /usr/local/rvm/
+    Group 'rvm' already exists
+usage: mktemp [-d] [-q] [-t prefix] [-u] template ...
+       mktemp [-d] [-q] [-u] -t prefix
+/usr/local/rvm/src/rvm/scripts/functions/installer: line 990: : No such file or directory
+
+ RVM:  Shell scripts enabling management of multiple ruby environments.
+ RTFM: https://rvm.io/
+ HELP: http://webchat.freenode.net/?channels=rvm (#rvm on irc.freenode.net)
+ Cheatsheet: http://cheat.errtheblog.com/s/rvm
+ Screencast: http://screencasts.org/episodes/how-to-use-rvm
+
+ In case of any issues run 'rvm requirements' or read 'rvm notes'
+
+Installation of RVM in /usr/local/rvm/ is almost complete:
+
+  * First you need to add all users that will be using rvm to 'rvm' group,
+    and logout - login again, anyone using rvm will be operating with `umask u=rwx,g=rwx,o=rx`.
+
+  * To <span class="operator"><span class="keyword">start</span> <span class="keyword">using</span> RVM you need <span class="keyword">to</span> run <span class="string">`source /etc/profile.d/rvm.sh`</span>
+    <span class="keyword">in</span> <span class="keyword">all</span> your <span class="keyword">open</span> shell windows, <span class="keyword">in</span> rare cases you need <span class="keyword">to</span> reopen <span class="keyword">all</span> shell windows.
+
+ xujingbao,
+
+   Thank you <span class="keyword">for</span> <span class="keyword">using</span> RVM!
+   I sincerely hope that RVM helps <span class="keyword">to</span> make your life easier <span class="keyword">and</span>
+   more enjoyable!!!
+
+ ~Wayne
+
+sh-<span class="number">3.2</span># rvm -v
+
+rvm <span class="number">1.19</span><span class="number">.6</span> (stable) <span class="keyword">by</span> Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]
+
+sh-<span class="number">3.2</span># [ -r ~/.profile ] && source ~/.profile
+sh-<span class="number">3.2</span># rvm requirements
+Installing requirements <span class="keyword">for</span> osx, might require sudo password.
+Skipping <span class="string">`brew update`</span> make sure your formulas <span class="keyword">are</span> up <span class="keyword">to</span> <span class="keyword">date</span>.
+RVM autolibs <span class="keyword">is</span> now configured <span class="keyword">with</span> mode <span class="string">'2'</span> =&gt; <span class="string">'check and stop if missing'</span>,
+please run <span class="string">`rvm autolibs enable`</span> <span class="keyword">to</span> let RVM <span class="keyword">do</span> its job <span class="keyword">or</span> run <span class="keyword">and</span> <span class="keyword">read</span> <span class="string">`rvm autolibs [help]`</span>
+<span class="keyword">or</span> visit https://rvm.io/rvm/autolibs <span class="keyword">for</span> more information.
+Missing required packages: libtool, libxml2, libxslt, libksba, openssl, sqlite.
+RVM autolibs <span class="keyword">is</span> now configured <span class="keyword">with</span> mode <span class="string">'2'</span> =&gt; <span class="string">'check and stop if missing'</span>,
+please run <span class="string">`rvm autolibs enable`</span> <span class="keyword">to</span> let RVM <span class="keyword">do</span> its job <span class="keyword">or</span> run <span class="keyword">and</span> <span class="keyword">read</span> <span class="string">`rvm autolibs [help]`</span>
+<span class="keyword">or</span> visit https://rvm.io/rvm/autolibs <span class="keyword">for</span> more information.
+There were package installation errors, make sure <span class="keyword">to</span> <span class="keyword">read</span> the log.
+<span class="keyword">Check</span> Homebrew requirements https://github.com/mxcl/homebrew/wiki/Installation
+sh-<span class="number">3.2</span># rvm autolibs enable
+sh-<span class="number">3.2</span># rvm requirements
+Installing requirements <span class="keyword">for</span> osx, might require sudo password.
+Updated Homebrew <span class="keyword">from</span> acf99493 <span class="keyword">to</span> b43d20d2.
+==&gt; Updated Formulae
+antiword
+Installing required packages: libtool, libxml2, libxslt, libksba, openssl, sqlite..............................................................................................................
+Updating certificates <span class="keyword">in</span> <span class="string">'/usr/local/etc/openssl/cert.pem'</span>.
+sh-<span class="number">3.2</span># rvm list
+
+rvm rubies
+
+
+ <span class="keyword">No</span> rvm rubies installed yet. Try <span class="string">'rvm help install'</span>.
+
+sh-<span class="number">3.2</span>#
+sh-<span class="number">3.2</span># rvm list
+
+rvm rubies
+
+
+ <span class="keyword">No</span> rvm rubies installed yet. Try <span class="string">'rvm help install'</span>.
+
+sh-<span class="number">3.2</span># rvm install <span class="number">2.0</span><span class="number">.0</span>
+Searching <span class="keyword">for</span> binary rubies, this might take <span class="keyword">some</span> <span class="keyword">time</span>.
+<span class="keyword">No</span> binary rubies available <span class="keyword">for</span>: osx/<span class="number">10.8</span>/x86_64/ruby-<span class="number">2.0</span><span class="number">.0</span>-p0.
+Continuing <span class="keyword">with</span> compilation. Please <span class="keyword">read</span> <span class="string">'rvm mount'</span> <span class="keyword">to</span> <span class="keyword">get</span> more information <span class="keyword">on</span> binary rubies.
+Installing requirements <span class="keyword">for</span> osx, might require sudo password.
+Already up-<span class="keyword">to</span>-<span class="keyword">date</span>.
+Certificates <span class="keyword">in</span> <span class="string">'/usr/local/etc/openssl/cert.pem'</span> already <span class="keyword">are</span> up <span class="keyword">to</span> <span class="keyword">date</span>.
+Installing Ruby <span class="keyword">from</span> source <span class="keyword">to</span>: /usr/<span class="keyword">local</span>/rvm/rubies/ruby-<span class="number">2.0</span><span class="number">.0</span>-p0, this may take a while depending <span class="keyword">on</span> your cpu(s)...
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #downloading ruby-<span class="number">2.0</span><span class="number">.0</span>-p0, this may take a while depending <span class="keyword">on</span> your <span class="keyword">connection</span>...
+  % Total    % Received % Xferd  Average Speed   <span class="keyword">Time</span>    <span class="keyword">Time</span>     <span class="keyword">Time</span>  <span class="keyword">Current</span>
+                                 Dload  Upload   Total   Spent    <span class="keyword">Left</span>  Speed
+<span class="number">100</span> <span class="number">10.3</span>M  <span class="number">100</span> <span class="number">10.3</span>M    <span class="number">0</span>     <span class="number">0</span>   <span class="number">150</span>k      <span class="number">0</span>  <span class="number">0</span>:<span class="number">01</span>:<span class="number">10</span>  <span class="number">0</span>:<span class="number">01</span>:<span class="number">10</span> --:--:--  <span class="number">218</span>k
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #extracting ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 <span class="keyword">to</span> /usr/<span class="keyword">local</span>/rvm/src/ruby-<span class="number">2.0</span><span class="number">.0</span>-p0
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #extracted <span class="keyword">to</span> /usr/<span class="keyword">local</span>/rvm/src/ruby-<span class="number">2.0</span><span class="number">.0</span>-p0
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #configuring......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #compiling......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #installing .................................................................................................................................
+Retrieving rubygems-<span class="number">2.0</span><span class="number">.3</span>
+  % Total    % Received % Xferd  Average Speed   <span class="keyword">Time</span>    <span class="keyword">Time</span>     <span class="keyword">Time</span>  <span class="keyword">Current</span>
+                                 Dload  Upload   Total   Spent    <span class="keyword">Left</span>  Speed
+<span class="number">100</span>  <span class="number">326</span>k  <span class="number">100</span>  <span class="number">326</span>k    <span class="number">0</span>     <span class="number">0</span>  <span class="number">93417</span>      <span class="number">0</span>  <span class="number">0</span>:<span class="number">00</span>:<span class="number">03</span>  <span class="number">0</span>:<span class="number">00</span>:<span class="number">03</span> --:--:--  <span class="number">107</span>k
+Extracting rubygems-<span class="number">2.0</span><span class="number">.3</span> ...
+Removing old Rubygems files...
+Installing rubygems-<span class="number">2.0</span><span class="number">.3</span> <span class="keyword">for</span> ruby-<span class="number">2.0</span><span class="number">.0</span>-p0...........................................................................................................................................................................................................................................................................................................................................................................................................
+Installation <span class="keyword">of</span> rubygems completed successfully.
+Saving wrappers <span class="keyword">to</span> <span class="string">'/usr/local/rvm/wrappers/ruby-2.0.0-p0'</span>........
+
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #adjusting #shebangs <span class="keyword">for</span> (gem irb erb ri rdoc testrb rake).
+ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #importing <span class="keyword">default</span> gemsets, this may take <span class="keyword">time</span>.......................
+Install <span class="keyword">of</span> ruby-<span class="number">2.0</span><span class="number">.0</span>-p0 - #complete
+
+$echo $PATH
+/usr/<span class="keyword">local</span>/Cellar/ruby/<span class="number">2.0</span><span class="number">.0</span>-p0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/<span class="keyword">local</span>/bin:/usr/<span class="keyword">local</span>/git/bin:/Users/xujingbao/.rvm/bin:/Applications/android-sdk-macosx/platform-tools/
+$ ruby -v
+ruby <span class="number">2.0</span><span class="number">.0</span>p0 (<span class="number">2013</span>-<span class="number">02</span>-<span class="number">24</span> revision <span class="number">39474</span>) [x86_64-darwin12<span class="number">.3</span><span class="number">.0</span>]</span>
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-04-25T15:54:09.000Z"><a href="/2013/04/25/2013-04-25-macportse5928chomebrew/">Apr 25 2013</a></time>
       
       
@@ -503,82 +789,6 @@
 
 
   
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-07-18T12:11:36.000Z"><a href="/2012/07/18/2012-07-18-e887aae5ae9ae4b989uibarbuttoniteme79a84e997aee9a298/">Jul 18 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/07/18/2012-07-18-e887aae5ae9ae4b989uibarbuttoniteme79a84e997aee9a298/">自定义UIBarButtonItem的问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>显示一个按钮</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="code"><pre>
-<span class="built_in">UIButton</span> *editButton = [<span class="built_in">UIButton</span> buttonWithType:UIButtonTypeCustom];
-
-editButton<span class="variable">.frame</span>=CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">30</span>);
-
-[editButton setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:@<span class="string">"edit_off.png"</span>] forState:UIControlStateNormal];
-
-[editButton setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:@<span class="string">"edit_on.png"</span>] forState:UIControlStateHighlighted];
-
-[editButton addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(doneAction)  forControlEvents:UIControlEventTouchUpInside];
-
-<span class="built_in">UIBarButtonItem</span> *editItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithCustomView:editButton];
-
-<span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.rightBarButtonItem</span> = editItem;
-</pre></td></tr></table></figure>
-
-<p>在iOS5 没有editButton.frame=CGRectMake(0, 0, 50, 30) 按钮会显示不出来。在iOS4 下  是不必须的…</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
 
   <nav id="pagination">
   
@@ -609,7 +819,7 @@ editButton<span class="variable">.frame</span>=CGRectMake(<span class="number">0
   
     <li><a href="/categories/Java/">Java</a><small>3</small></li>
   
-    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+    <li><a href="/categories/Life/">Life</a><small>7</small></li>
   
     <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
   

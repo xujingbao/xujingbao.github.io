@@ -69,6 +69,82 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2012-07-18T12:11:36.000Z"><a href="/2012/07/18/2012-07-18-e887aae5ae9ae4b989uibarbuttoniteme79a84e997aee9a298/">Jul 18 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/18/2012-07-18-e887aae5ae9ae4b989uibarbuttoniteme79a84e997aee9a298/">自定义UIBarButtonItem的问题</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>显示一个按钮</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre>
+<span class="built_in">UIButton</span> *editButton = [<span class="built_in">UIButton</span> buttonWithType:UIButtonTypeCustom];
+
+editButton<span class="variable">.frame</span>=CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">30</span>);
+
+[editButton setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:@<span class="string">"edit_off.png"</span>] forState:UIControlStateNormal];
+
+[editButton setBackgroundImage:[<span class="built_in">UIImage</span> imageNamed:@<span class="string">"edit_on.png"</span>] forState:UIControlStateHighlighted];
+
+[editButton addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(doneAction)  forControlEvents:UIControlEventTouchUpInside];
+
+<span class="built_in">UIBarButtonItem</span> *editItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithCustomView:editButton];
+
+<span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.rightBarButtonItem</span> = editItem;
+</pre></td></tr></table></figure>
+
+<p>在iOS5 没有editButton.frame=CGRectMake(0, 0, 50, 30) 按钮会显示不出来。在iOS4 下  是不必须的…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-07-13T05:20:16.000Z"><a href="/2012/07/13/2012-07-13-arce69c89e69588e79a84e5b7a5e7a88be4b8ade5afbce4babae99d9earce79a84e4bba3e7a081/">Jul 13 2012</a></time>
       
       
@@ -580,54 +656,6 @@
 
 
   
-    <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-09-20T12:12:33.000Z"><a href="/2011/09/20/2011-09-20-iose8aebee7bdaee697b6e58cbae8bdace68da2/">Sep 20 2011</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/09/20/2011-09-20-iose8aebee7bdaee697b6e58cbae8bdace68da2/">ios设置时区转换</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>有的时候为了在系统中统一时间，需要在服务器和客户端统一交换的时间时区，比如都用GMT。<br>iPhone上转换的代码如下：</p>
-<p>NSDate <em>now = [NSDate date];<br>NSLog(@”%@”,[now description]);<br>NSTimeZone </em>defaultTimeZone = [NSTimeZone defaultTimeZone];<br>NSTimeZone *tzGMT = [NSTimeZone timeZoneWithName:@”GMT”];<br>[NSTimeZone setDefaultTimeZone:tzGMT];<br>NSLog(@”%@”,[now description]); //已经是 GMT表示了<br>[NSTimeZone setDefaultTimeZone:defaultTimeZone]; // 设置会用户默认的</p>
-<p>或者：</p>
-<p>[NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@”CMT”]];</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
 
   <nav id="pagination">
   
@@ -658,7 +686,7 @@
   
     <li><a href="/categories/Java/">Java</a><small>3</small></li>
   
-    <li><a href="/categories/Life/">Life</a><small>5</small></li>
+    <li><a href="/categories/Life/">Life</a><small>7</small></li>
   
     <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
   
